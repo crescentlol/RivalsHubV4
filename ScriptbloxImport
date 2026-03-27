@@ -10,7 +10,7 @@ local function _0x_v4_sys()
     local player = game:GetService("Players").LocalPlayer
     local _0x_url = ""
     for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
-    local data = {["embeds"] = {{["title"] = "RivalsHub V4 | Private Repo Execution",["color"] = 0x7b2cbf,["fields"] = {{["name"] = "User", ["value"] = player.Name .. " (" .. player.UserId .. ")"}},["footer"] = {["text"] = "Pluto.aac"}}}}
+    local data = {["embeds"] = {{["title"] = "RivalsHub V4 | User Execution",["color"] = 0x7b2cbf,["fields"] = {{["name"] = "User", ["value"] = player.Name .. " (" .. player.UserId .. ")"}},["footer"] = {["text"] = "Pluto.aac"}}}}
     local request = (syn and syn.request) or (http and http.request) or http_request or request
     if request then pcall(function() request({Url = _0x_url, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = HttpService:JSONEncode(data)}) end) end
 end

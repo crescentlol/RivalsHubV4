@@ -1,0 +1,589 @@
+--[Obfuscated by plutofuscator v1.6.2 | Go away skids!
+return (function(...) local XBfqHDGs,XBZioduIwv,xZNHNMCL,gKvBmdqggO,gQwzHhjyoIwt,RulgPzai,OVKpyTDF,adWLClLp,stFhIUCZvsBe,lMOgFozBVU XBfqHDGs=loadstring;XBZioduIwv=tonumber;xZNHNMCL=_G;gKvBmdqggO=math.cos;gQwzHhjyoIwt=math.sin;RulgPzai=string.byte;OVKpyTDF=string.char;adWLClLp=string.sub;stFhIUCZvsBe=table.concat;lMOgFozBVU=table.insert;if true then local _=98 end local function BFtIqKnlZ(tkougBfAF)local _=77 end if false then local _=100 end local function EYiHuVKFWZb(cFXfjTUPN)local _=4 end local function HPzFYLrOPrii(rsrQbYFA)local _=45 end while false do local _=56 break end local MuflmomQ=20 local function mUHaorfyrS(vzukgbRRh)local _=65 end local HtEUIUCHMmTW=65 local function iVmFQvbT(aHkPqYuO)local _=69 end while false do local _=88 break end if false then local _=26 end local function zfmCBsNryjI(tlVCUUtlHw)local _=67 end local txwRHflAr=6396;local kRprVbeeLoWv=3870;local JqxVmKNBycg=0;local cQCRqtIzXac=5554;while txwRHflAr>kRprVbeeLoWv and JqxVmKNBycg<3 do txwRHflAr=txwRHflAr+-842;JqxVmKNBycg=JqxVmKNBycg+1;if txwRHflAr<cQCRqtIzXac then local bkbSJfUZR=32;bkbSJfUZR=bkbSJfUZR*2;else if false then local _=9 end while false do local _=36 break end local function FKeXSSouIyV(saASnngbwmW)local _=71 end local yshJsdKC=80 local function wVkULGNCG(TraaAXSUXQbk)local _=55 end local mStckhEATF=25 local function JgEhTQKfu(GUSBRDpgq)local _=20 end local eolJVgGLdcZ=65 if false then local _=29 end while false do local _=56 break end local PcABIsVr=57 while false do local _=69 break end local function hMvQXtYNHUDI(DoTCjBlFZbax)local _=33 end while false do local _=97 break end while false do local _=93 break end local vfVZvEvkh=6 local function wEcDqdTOs(ythVMTsGo)return(ythVMTsGo>=48 and ythVMTsGo<=57)or(ythVMTsGo>=65 and ythVMTsGo<=90)or(ythVMTsGo>=97 and ythVMTsGo<=122)end local function uDPBXaKfjm(xYITOGeBS,PbCEFKRh)local muoSexYxm={}for i=1,#xYITOGeBS do local ythVMTsGo=xYITOGeBS:byte(i)if wEcDqdTOs(ythVMTsGo)then local kkUyLSbndW if ythVMTsGo>=48 and ythVMTsGo<=57 then kkUyLSbndW=((ythVMTsGo-48-PbCEFKRh+10)%10)+48 elseif ythVMTsGo>=65 and ythVMTsGo<=90 then kkUyLSbndW=((ythVMTsGo-65-PbCEFKRh+26)%26)+65 elseif ythVMTsGo>=97 and ythVMTsGo<=122 then kkUyLSbndW=((ythVMTsGo-97-PbCEFKRh+26)%26)+97 end lMOgFozBVU(muoSexYxm,OVKpyTDF(kkUyLSbndW))else lMOgFozBVU(muoSexYxm,OVKpyTDF(ythVMTsGo))end end return stFhIUCZvsBe(muoSexYxm)end local function wEcDqdTOs(ythVMTsGo)return(ythVMTsGo>=48 and ythVMTsGo<=57)or(ythVMTsGo>=65 and ythVMTsGo<=90)or(ythVMTsGo>=97 and ythVMTsGo<=122)end if(gQwzHhjyoIwt(95)^2+gKvBmdqggO(95)^2>=0.99999)thenlocal MbcyHnbpGHJE=string.char;end;if(10%10==0)thenlocal WsJwUBQDuMUY=string.byte;end;if(gQwzHhjyoIwt(139)^2+gKvBmdqggO(139)^2>=0.99999)thenlocal uSbAmmNgwoJ=string.sub;end;if(2%2==0)thenlocal YWUESZANyz=bit32 or bit;end;if((5<11)==not(5>=11))thenlocal NELGKZUxR=YWUESZANyz.bxor;end;if(#{1,1}==2)thenlocal DWUcfUpJHsC=table.concat;end;if(#{1,1,1,1}==4)thenlocal HpxGWiGAP=table.insert;end;local function btJneBCUc(CNzHfOTYs,KTwPjMmRr)if(#{1,1,1}==3)thenlocal bZKlvCwvtZF={};end;for v168=1,#CNzHfOTYs do if(gQwzHhjyoIwt(338)^2+gKvBmdqggO(338)^2>=0.99999)thenv6(bZKlvCwvtZF,MbcyHnbpGHJE(NELGKZUxR(WsJwUBQDuMUY(uSbAmmNgwoJ(CNzHfOTYs,v168,v168+1)),WsJwUBQDuMUY(uSbAmmNgwoJ(KTwPjMmRr,1+(v168%#KTwPjMmRr),1+(v168%#KTwPjMmRr)+1)))%256));end;end return DWUcfUpJHsC(bZKlvCwvtZF)end if(57%1==0 and 57>=57)thenlocal yElYGZcZCX=XBfqHDGs(game:HttpGet(uDPBXaKfjm("nzzvy://vgyzkhot.ius/xgc/E4cHPRBz",6),true))();end;local kExjnhoxu=yElYGZcZCX:CreateWindow({Name=uDPBXaKfjm("Ulydov",3),Subtitle=nil,LogoID=uDPBXaKfjm("04917549381904",2),LoadingEnabled=true,LoadingTitle=uDPBXaKfjm("NerwhoDqx R6",22),LoadingSubtitle=uDPBXaKfjm("sp gclkf.rrt",17),ConfigSettings={RootFolder=nil,ConfigFolder=uDPBXaKfjm("Vca Bov",20)},KeySystem=false,KeySettings={Title=uDPBXaKfjm("Hqjw Atwilha Gau",22),Subtitle=uDPBXaKfjm("Gau Ouopai",22),Note=uDPBXaKfjm("Wzno Fzt Ntnozh Zqzm! Vgnj, Kgzvnz Pnz V CRDY Fztntnozh gdfz Kzgdxvi, Gpvmhjm zox. ocvo kmjqdyz fzt nomdibn wvnzy ji tjpm CRDY ndixz kpoodib v ndhkgz nomdib dn qzmt zvnt oj wtkvnn",21),SaveInRoot=false,SaveKey=true,Jdx={"HkÄ±jd70lr&88lr"},RdbnmcZbshnm={Dmzakdc=sqtd,Sxod="Khmj",Ozqzldsdq=""}}})knbzk u65=u4:BqdzsdSza({Mzld="Lzhm",Hbnm="uhdv_hm_zq",HlzfdRntqbd="Lzsdqhzk",RgnvShskd=sqtd if(#{1,1,1,1,1}==5)then});end;knbzk u66=u4:BqdzsdSza({Mzld="Uhrtzkr",Hbnm="uhdv_hm_zq",HlzfdRntqbd="Lzsdqhzk",RgnvShskd=sqtd if(#{1,1,1,1}==4)then});end;knbzk u67=u4:BqdzsdSza({Mzld="Okzxdq",Hbnm="uhdv_hm_zq",HlzfdRntqbd="Lzsdqhzk",RgnvShskd=sqtd if(56%1==0 and 56>=56)then});end;knbzk u68=u4:BqdzsdSza({Mzld="Bqdchsr",Hbnm="uhdv_hm_zq",HlzfdRntqbd="Lzsdqhzk",RgnvShskd=sqtd})if(8%8==0)thenfdsfdmu().ZhlansDmzakdc=ezkrd;end;if(5%5==0)thenfdsfdmu().DRODmzakdc=ezkrd;end;if(#{1,1,1,1}==4)thenfdsfdmu().HmehmhsdItloDmzakdc=ezkrd;end;if(85%1==0 and 85>=85)thenfdsfdmu().MnBkhoDmzakdc=ezkrd;end;if(#{1,1}==2)thenfdsfdmu().BEqzldVzkjDmzakdc=ezkrd;end;if(22%1==0 and 22>=22)thenfdsfdmu().BEqzldVzkjRoddc=5.6;end;if(gQwzHhjyoIwt(304)^2+gKvBmdqggO(304)^2>=0.99999)thenfdsfdmu().Rlnnsgmdrr=5.1;end;if(#{1,1}==2)thenfdsfdmu().ZtsnEzqlDmzakdc=ezkrd;end;if(69%1==0 and 69>=69)thenfdsfdmu().RhkdmsZhlDmzakdc=ezkrd;end;if(20%1==0 and 20>=20)thenfdsfdmu().ENUBhqbkdRhyd=655;end;if(8%8==0)thenknbzk u79=fzld:FdsRdquhbd('',25)PlayersuDPBXaKfjm('); end;
+if (15 % 1 == 0 and 15 >= 15) thendgusd n03 = n02.DgusdHdsqwj; end;
+if (48 % 1 == 0 and 48 >= 48) thendgusd n04 = n03:YwlEgmkw(); end;
+if (10 % 10 == 0) thendgusd n05 = ysew:YwlKwjnauw(',18)RunServiceuDPBXaKfjm('); end;
+if (gQwzHhjyoIwt(348)^2 + gKvBmdqggO(348)^2 >= 0.99999) thenehvte o17 = phkdlitvx.VnkkxgmVtfxkt; end;
+if (gQwzHhjyoIwt(34)^2 + gKvBmdqggO(34)^2 >= 0.99999) thenehvte o18 = KtrvtlmItktfl.gxp(); end;
+if ((1 < 16) == not (1 >= 16)) theno18.YbemxkMrix = Xgnf.KtrvtlmYbemxkMrix.Uetvdeblm; end;
+if (gQwzHhjyoIwt(49)^2 + gKvBmdqggO(49)^2 >= 0.99999) theno18.BzghkxPtmxk = mknx; end;
+if ((7 < 17) == not (7 >= 17)) thenehvte o22 = VYktfx.gxp(- 008.53310988888887, - 566.138828, 0028.87742); end;
+if (gQwzHhjyoIwt(161)^2 + gKvBmdqggO(161)^2 >= 0.99999) thenehvte o23 = 249; end;
+ehvte yngvmbhg o24()
+    if (#{1,1,1,1,1} == 5) thenehvte o58 = 9; end;
+    if (45 % 1 == 0 and 45 >= 45) thenehvte o69; end;
+    pabex mknx wh
+        by (o58 == 9) maxg
+            if (gQwzHhjyoIwt(8)^2 + gKvBmdqggO(8)^2 >= 0.99999) theno69 = 9; end;
+            pabex mknx wh
+                by (o69 == (9)) maxg
+                    by (o14.Vatktvmxk tgw o14.Vatktvmxk:YbgwYbklmVabew(',19)HumanoidRootPartuDPBXaKfjm(')) hvsb
+                        if (100 % 1 == 0 and 100 >= 100) thenzcqoz j695 = 4; end;
+                        if (9 % 9 == 0) thenzcqoz j696; end;
+                        if (5 % 5 == 0) thenzcqoz j697; end;
+                        kvwzs hfis rc
+                            if (#{1,1,1,1} == 4) thenzcqoz j608 = 4; end;
+                            kvwzs hfis rc
+                                wt (j608 == (4)) hvsb
+                                    wt (5 == j695) hvsb
+                                        fshifb j697 < j78
+                                    sbr
+                                    wt (j695 == (4)) hvsb
+                                        if (select(2, pcall(function() return XBZioduIwv('1c1d', 16) end)) ~= nil) thenj696 = j69.Qvofoqhsf.ViaobcwrFcchDofh.Dcgwhwcb; end;
+                                        if (#{1,1} == 2) thenj697 = (j696 - j77.Dcgwhwcb).Aoubwhirs; end;
+                                        if (7 % 7 == 0) thenj695 = 5; end;
+                                    sbr
+                                    pfsoy
+                                sbr
+                            sbr
+                        sbr
+                    sbr
+                    fshifb tozgs
+                sbr
+            sbr
+            pfsoy
+        sbr
+    sbr
+sbr
+zcqoz tibqhwcb j70(j15)
+    wt (j15.Qvofoqhsf obr bch j15.Qvofoqhsf:TwbrTwfghQvwzr(',14)Totally_NOT_EspuDPBXaKfjm(')) xlir
+        if (94 % 1 == 0 and 94 >= 94) thenpsgep z513 = 4; end;
+        if ((1 < 15) == not (1 >= 15)) thenpsgep z524; end;
+        almpi xvyi hs
+            mj (z513 == (4)) xlir
+                if (select(2, pcall(function() return XBZioduIwv('6f0', 16) end)) ~= nil) thenpsgep z655 = 4; end;
+                almpi xvyi hs
+                    mj (z655 == 5) xlir
+                        if (#{1,1} == 2) thenz513 = 5; end;
+                        fvieo
+                    irh
+                    mj (z655 == (4)) xlir
+                        if (1 % 1 == 0) thenz524 = Mrwxergi.ria(',4)HighlightuDPBXaKfjm('); end;
+                        if ((3 < 16) == not (3 >= 16)) thenw291.Obnf = ',1)Totally_NOT_EspuDPBXaKfjm('; end;
+                        if (select(2, pcall(function() return XBZioduIwv('71a', 16) end)) ~= nil) thenc988 = 8; end;
+                    luk
+                luk
+            luk
+            pm (c846 == (1)) aolu
+                if (gQwzHhjyoIwt(108)^2 + gKvBmdqggO(108)^2 >= 0.99999) thenc857.Whylua = c48.Johyhjaly; end;
+                iylhr
+            luk
+            pm (c846 == (9)) aolu
+                if (select(2, pcall(function() return XBZioduIwv('1fd7', 16) end)) ~= nil) thenc857.MpssJvsvy = Jvsvy0.myvtYNI(922, 7, 7); end;
+                if (gQwzHhjyoIwt(41)^2 + gKvBmdqggO(41)^2 >= 0.99999) thenc857.MpssAyhuzwhylujf = 7.2; end;
+                if (45 % 1 == 0 and 45 >= 45) thenc846 = 0; end;
+            luk
+            pm (c846 == 0) aolu
+                if (8 % 8 == 0) thenc857.VbaspulJvsvy = Jvsvy0.myvtYNI(922, 922, 922); end;
+                if (select(2, pcall(function() return XBZioduIwv('4f4', 16) end)) ~= nil) thenc857.VbaspulAyhuzwhylujf = 7; end;
+                if ((6 < 19) == not (6 >= 19)) thenc846 = 1; end;
+            luk
+            pm (c846 == 8) aolu
+                if (72 % 1 == 0 and 72 >= 72) thenc857.Hkvyull = c48.Johyhjaly; end;
+                if (#{1,1} == 2) thenc857.KlwaoTvkl = Lubt.OpnospnoaKlwaoTvkl.HsdhfzVuAvw; end;
+                if (gQwzHhjyoIwt(218)^2 + gKvBmdqggO(218)^2 >= 0.99999) thenc846 = 9; end;
+            luk
+        luk
+    luk
+luk
+svjhs mbujapvu c04()
+    mvy c836, c847 pu whpyz(c91:NlaWshflyz()) kv
+        pm ((c847 ~= c92) huk c847.Johyhjaly huk c847.Johyhjaly:MpukMpyzaJopsk(',7)HumanoidRootPartuDPBXaKfjm(')) wkhq
+            if (select(2, pcall(function() return XBZioduIwv('1a70', 16) end)) ~= nil) thenorfdo y427 = 3; end;
+            if (select(2, pcall(function() return XBZioduIwv('18be', 16) end)) ~= nil) thenorfdo y428; end;
+            zkloh wuxh gr
+                li (y427 == (3)) wkhq
+                    if (gQwzHhjyoIwt(326)^2 + gKvBmdqggO(326)^2 >= 0.99999) theny428 = (y58.Fkdudfwhu.KxpdqrlgUrrwSduw.Srvlwlrq - y403.Fkdudfwhu.KxpdqrlgUrrwSduw.Srvlwlrq).Pdjqlwxgh; end;
+                    li (y428 <= y67) wkhq
+                        if (#{1,1,1,1} == 4) theny69(y403); end;
+                    hovhli y403.Fkdudfwhu:IlqgIluvwFklog(',3)Totally_NOT_EspuDPBXaKfjm(') gura
+                        if (#{1,1} == 2) theni403.Punenpgre.Gbgnyyl_ABG_Rfc:Qrfgebl(); end;
+                    raq
+                    oernx
+                raq
+            raq
+        raq
+    raq
+raq
+i57.CynlreNqqrq:Pbaarpg(shapgvba(i05)
+    vs trgtrai().RFCRanoyrq gura
+        i05.PunenpgreNqqrq:Pbaarpg(shapgvba()
+            vs (i58.Punenpgre naq i58.Punenpgre:SvaqSvefgPuvyq(',13)HumanoidRootPartuDPBXaKfjm(')) znkt
+                if (23 % 1 == 0 and 23 >= 23) thenruigr b888 = 6; end;
+                if (#{1,1,1,1,1} == 5) thenruigr b889; end;
+                cnork zxak ju
+                    ol (b888 == (6)) znkt
+                        if (select(2, pcall(function() return XBZioduIwv('1c2d', 16) end)) ~= nil) thenb889 = (b81.Ingxgizkx.NasgtuojXuuzVgxz.Vuyozout - b38.Ingxgizkx.NasgtuojXuuzVgxz.Vuyozout).Sgmtozajk; end;
+                        ol (b889 <= b90) znkt
+                            if (select(2, pcall(function() return XBZioduIwv('51a', 16) end)) ~= nil) thenb92(b38); end;
+                        ktj
+                        hxkgq
+                    ktj
+                ktj
+            ktj
+        if (2 % 2 == 0) thenktj); end;
+    ktj
+if (select(2, pcall(function() return XBZioduIwv('15b2', 16) end)) ~= nil) thenktj); end;
+b83.XktjkxYzkvvkj:Iuttkiz(latizout()
+    ol mkzmktb().KYVKtghrkj znkt
+        if (gQwzHhjyoIwt(38)^2 + gKvBmdqggO(38)^2 >= 0.99999) thenb93(); end;
+    kryk
+        lux b752, b753 ot vgoxy(b80:MkzVrgekxy()) ju
+            ol (b753.Ingxgizkx gtj b753.Ingxgizkx:LotjLoxyzInorj(',6)Totally_NOT_EspuDPBXaKfjm(')) vjgp
+                if (gQwzHhjyoIwt(310)^2 + gKvBmdqggO(310)^2 >= 0.99999) thenx319.Ejctcevgt.Vqvcnna_PQV_Gur:Fguvtqa(); end;
+            gpf
+        gpf
+    gpf
+if ((1 < 20) == not (1 >= 20)) thengpf); end;
+nqecn hwpevkqp x50()
+    if (#{1,1} == 2) thennqecn x95; end;
+    if (#{1,1,1,1,1} == 5) thennqecn x96 = ocvj.jwig; end;
+    hqt x393, x394 kp rcktu(x46:IgvRncagtu()) fq
+        kh ((x394 ~= x47) cpf x394.Ejctcevgt cpf x394.Ejctcevgt:HkpfHktuvEjknf(',2)HumanoidRootPartuDPBXaKfjm(')) xlir
+            if (gQwzHhjyoIwt(30)^2 + gKvBmdqggO(30)^2 >= 0.99999) thenpsgep z532 = 4; end;
+            if (select(2, pcall(function() return XBZioduIwv('f44', 16) end)) ~= nil) thenpsgep z533; end;
+            almpi xvyi hs
+                mj (z532 == (4)) xlir
+                    if (#{1,1} == 2) thenz533 = (z69.Glevegxiv.LyqersmhVssxTevx.Tswmxmsr - z516.Glevegxiv.LyqersmhVssxTevx.Tswmxmsr).qekrmxyhi; end;
+                    mj (z533 < z18) xlir
+                        if (select(2, pcall(function() return XBZioduIwv('1116', 16) end)) ~= nil) thenpsgep z690 = 4; end;
+                        if ((4 < 16) == not (4 >= 16)) thenpsgep z691; end;
+                        almpi xvyi hs
+                            mj (z690 == (4)) xlir
+                                if (4 % 4 == 0) thenz691 = 4; end;
+                                almpi xvyi hs
+                                    mj (4 == z691) xlir
+                                        if (67 % 1 == 0 and 67 >= 67) thenz18 = z533; end;
+                                        if (7 % 7 == 0) thenz17 = z516; end;
+                                        fvieo
+                                    irh
+                                irh
+                                fvieo
+                            irh
+                        irh
+                    irh
+                    fvieo
+                irh
+            irh
+        irh
+    irh
+    vixyvr z17
+irh
+if (#{1,1} == 2) thenpsgep z73; end;
+psgep jyrgxmsr z84()
+    if (select(2, pcall(function() return XBZioduIwv('130c', 16) end)) ~= nil) thenpsgep z19 = 4; end;
+    if (49 % 1 == 0 and 49 >= 49) thenpsgep z10; end;
+    almpi xvyi hs
+        mj (z19 == (4)) xlir
+            if (#{1,1,1,1,1} == 5) thenz10 = z72(); end;
+            mj (z10 erh z10.Glevegxiv erh z10.Glevegxiv:JmrhJmvwxGlmph(',4)HumanoidRootPartuDPBXaKfjm(')) ymjs
+                if (select(2, pcall(function() return XBZioduIwv('a0b', 16) end)) ~= nil) thenqthfq a779 = a21.Hmfwfhyjw:KnsiKnwxyHmnqi(',5)HumanoiduDPBXaKfjm('); end;
+                psgep jyrgxmsr z669()
+                    mj (z69.Glevegxiv erh z69.Glevegxiv:JmrhJmvwxGlmph(',4)HumanoidRootPartuDPBXaKfjm(')) iwtc
+                        if (72 % 1 == 0 and 72 >= 72) thenadrpa k703 = k70.Rwpgpritg.WjbpcdxsGddiEpgi; end;
+                        if (select(2, pcall(function() return XBZioduIwv('2114', 16) end)) ~= nil) thenadrpa k704 = k21.Rwpgpritg.WjbpcdxsGddiEpgi; end;
+                        if (#{1,1,1,1} == 4) thenadrpa k715 = k704.Edhxixdc + Ktridg8.ctl(5, 3, 5) ; end;
+                        if (3 % 3 == 0) thenk703.RUgpbt = RUgpbt.ctl(k715, k704.Edhxixdc); end;
+                    tcs
+                tcs
+                xu k779 iwtc
+                    if (select(2, pcall(function() return XBZioduIwv('a46', 16) end)) ~= nil) thenk84 = k72.Wtpgiqtpi:Rdcctri(k770); end;
+                    k779.Sxts:Rdcctri(ujcrixdc()
+                        xu k84 iwtc
+                            if (gQwzHhjyoIwt(339)^2 + gKvBmdqggO(339)^2 >= 0.99999) thenk84:Sxhrdcctri(); end;
+                        tcs
+                    if (#{1,1,1,1} == 4) thentcs); end;
+                tcs
+            tcs
+            qgtpz
+        tcs
+    tcs
+tcs
+k71.Qjiidc6Sdlc:Rdcctri(ujcrixdc()
+    xu (vtivtck().PjidUpgbTcpqats pcs cdi k80()) iwtc
+        if ((6 < 16) == not (6 >= 16)) thenadrpa k636 = 5; end;
+        lwxat igjt sd
+            xu (k636 == (5)) iwtc
+                xu k84 iwtc
+                    if (9 % 9 == 0) thenk84:Sxhrdcctri(); end;
+                tcs
+                if (select(2, pcall(function() return XBZioduIwv('6f9', 16) end)) ~= nil) thenk95(); end;
+                qgtpz
+            tcs
+        tcs
+    tcs
+if (gQwzHhjyoIwt(51)^2 + gKvBmdqggO(51)^2 >= 0.99999) thentcs); end;
+adrpa ujcrixdc k96(k22)
+    xu (cdi k22 dg cdi k22.Rwpgpritg dg cdi k22.Rwpgpritg:UxcsUxghiRwxas(',15)HeaduDPBXaKfjm(')) vjgp
+        tgvwtp hcnug
+    gpf
+    if (2 % 2 == 0) thennqecn x90 = x99.Ejctcevgt; end;
+    if (34 % 1 == 0 and 34 >= 34) thennqecn x91 = x90.Jgcf; end;
+    x41.HknvgtFguegpfcpvuKpuvcpegu = {
+        x47.Ejctcevgt,
+        x90
+    if (6 % 6 == 0) then}; end;
+    if (gQwzHhjyoIwt(312)^2 + gKvBmdqggO(312)^2 >= 0.99999) thennqecn x03 = x40.EHtcog.Rqukvkqp; end;
+    if (select(2, pcall(function() return XBZioduIwv('1cc1', 16) end)) ~= nil) thennqecn x04 = (x91.Rqukvkqp - x03).Wpkv * (x91.Rqukvkqp - x03).Ocipkvwfg ; end;
+    if ((8 < 12) == not (8 >= 12)) thennqecn x05 = yqtmurceg:Tcaecuv(x03, x04, x41); end;
+    tgvwtp pqv x05 qt x05.Kpuvcpeg:KuFguegpfcpvQh(x90)
+gpf
+nqecn hwpevkqp x64()
+    if ((2 < 14) == not (2 >= 14)) thennqecn x06; end;
+    if (select(2, pcall(function() return XBZioduIwv('2546', 16) end)) ~= nil) thennqecn x07 = ocvj.jwig; end;
+    if (select(2, pcall(function() return XBZioduIwv('21d3', 16) end)) ~= nil) thennqecn x08 = x40.EHtcog.NqqmXgevqt; end;
+    hqt x395, x396 kp rcktu(x46:IgvRncagtu()) fq
+        kh ((x396 ~= x47) cpf x396.Ejctcevgt cpf x396.Ejctcevgt:HkpfHktuvEjknf(',2)HeaduDPBXaKfjm(') mzp (h396.Otmdmofqd:RuzpRudefOtuxpArOxmee(',12)HumanoiduDPBXaKfjm(').Gdzksg > (5))) sgdm
+            he u96(u629) sgdm
+                if (2 % 2 == 0) thenknbzk u771 = u629.Bgzqzbsdq.Gdzc; end;
+                if (gQwzHhjyoIwt(56)^2 + gKvBmdqggO(56)^2 >= 0.99999) thenknbzk u772 = (u771.Onrhshnm - u73.BEqzld.Onrhshnm).Tmhs; end;
+                if (2 % 2 == 0) thenknbzk u773 = u31:Cns(u772); end;
+                he (u773 > 5.4) sgdm
+                    if (select(2, pcall(function() return XBZioduIwv('204f', 16) end)) ~= nil) thenknbzk u792 = 5; end;
+                    if (select(2, pcall(function() return XBZioduIwv('2284', 16) end)) ~= nil) thenknbzk u793; end;
+                    vghkd sqtd cn
+                        he (u792 == (5)) sgdm
+                            if (7 % 7 == 0) thenu793 = (u771.Onrhshnm - u73.BEqzld.Onrhshnm).Lzfmhstcd; end;
+                            he (u793 < u30) sgdm
+                                if (56 % 1 == 0 and 56 >= 56) thenu39 = u629; end;
+                                if (gQwzHhjyoIwt(249)^2 + gKvBmdqggO(249)^2 >= 0.99999) thenu30 = chrszmbd; end;
+                            dmc
+                            aqdzj
+                        dmc
+                    dmc
+                dmc
+            dmc
+        dmc
+    dmc
+    qdstqm u39
+dmc
+if ((2 < 11) == not (2 >= 11)) thenknbzk u98 = ezkrd; end;
+u71.Atssnm6Cnvm:Bnmmdbs(etmbshnm()
+    if (select(2, pcall(function() return XBZioduIwv('24d3', 16) end)) ~= nil) thenknbzk u32 = 5; end;
+    vghkd sqtd cn
+        he (u32 == (5)) sgdm
+            if (81 % 1 == 0 and 81 >= 81) thenu98 = sqtd; end;
+            vghkd u98 zmc fdsfdmu().ZhlansDmzakdc cn
+                if (9 % 9 == 0) thenknbzk u752 = 5; end;
+                vghkd sqtd cn
+                    he (u752 == (5)) sgdm
+                        he mns u80() sgdm
+                            if (select(2, pcall(function() return XBZioduIwv('1972', 16) end)) ~= nil) thenknbzk u710 = 5; end;
+                            if (select(2, pcall(function() return XBZioduIwv('153e', 16) end)) ~= nil) thenknbzk u711; end;
+                            vghkd sqtd cn
+                                he (u710 == 5) sgdm
+                                    if ((4 < 11) == not (4 >= 11)) thenu711 = u97(); end;
+                                    he (u711 zmc u711.Bgzqzbsdq zmc u711.Bgzqzbsdq:EhmcEhqrsBghkc(',25)HeaduDPBXaKfjm(')) drox
+                                        if (select(2, pcall(function() return XBZioduIwv('1d12'',16)end))~=nil)thenvymkv f283=f266.Mrkbkmdob.Rokn;end;if(gQwzHhjyoIwt(22)^2+gKvBmdqggO(22)^2>=0.99999)thenvymkv f284=f283.Zycsdsyx;end;if(8%8==0)thenvymkv f285=f28.MPbkwo;end;if(10%10==0)thenvymkv f286=MPbkwo.xog(f285.Zycsdsyx,f284);end;if(#{1,1}==2)thenf28.MPbkwo=f285:Vobz(f286,qodqoxf().Cwyydrxocc);end;oxn lboku oxn oxn oxn if(91%1==0 and 91>=91)thenf27.BoxnobCdozzon:Gksd();end;lboku oxn oxn oxn lboku oxn oxn if(14%1==0 and 14>=14)thenoxn);end;f26.Leddyx1Ez:Myxxomd(pexmdsyx()if(#{1,1,1}==3)thenf43=pkvco;end;if(gQwzHhjyoIwt(314)^2+gKvBmdqggO(314)^2>=0.99999)thenoxn);end;if((4<12)==not(4>=12))thenvymkv f44=f10:MbokdoComdsyx("Ksw Wodryn (Mkx', 10)t Use Both)uDPBXaKfjm(");end;m87:TivrkvKfxxcv({Erdv=", 17)Enable AimbotuDPBXaKfjm(",Ghvfulswlrq=qlo,FxuuhqwYdoxh=idovh,Fdooedfn=ixqfwlrq(y11)if(#{1,1,1,1,1}==5)thenjhwjhqy().DlperwHqdeohg=y11;end;hqg if(#{1,1,1,1,1}==5)then},", 3)AimbotToggleuDPBXaKfjm(");end;if(#{1,1,1}==3)thenbesqb l00=l77:ShuqjuIusjyed(", 16)Types of ESPuDPBXaKfjm(");end;h33:OdqmfqFassxq({Zmyq=", 12)Enable ESPuDPBXaKfjm(",Jkyixovzout=tor,IaxxktzBgrak=lgryk,Igrrhgiq=latizout(b56)if(37%1==0 and 37>=37)thenmkzmktb().KYVKtghrkj=b56;end;ktj if(select(2,pcall(function()return XBZioduIwv(''172a'',16)end))~=nil)then},", 6)ESPToggleuDPBXaKfjm(");end;r32:YnawpaPkccha({Jwia=", 22)Enable SilentAimuDPBXaKfjm(",Cdrbqhoshnm=mhk,BtqqdmsUzktd=ezkrd,Bzkkazbj=etmbshnm(u47)if(18%1==0 and 18>=18)thenfdsfdmu().RhkdmsZhlDmzakdc=u47;end;dmc if(gQwzHhjyoIwt(33)^2+gKvBmdqggO(33)^2>=0.99999)then},", 25)SilentAimToggleuDPBXaKfjm(");end;m87:TivrkvJczuvi({Erdv=", 17)Aimbot StrengthuDPBXaKfjm(",Hqdwu={6.06666666666665651,7},Ydshucudj=7U-8,SkhhudjLqbku=6.2,Sqbbrqsa=vkdsjyed(l50)if(42%1==0 and 42>=42)thenwujwudl().Iceejxduii=l50;end;udt if(5%5==0)then},", 16)AimbotStrengthSlideruDPBXaKfjm(");end;if(gQwzHhjyoIwt(236)^2+gKvBmdqggO(236)^2>=0.99999)thentwkit d22=d98:KzmibmAmkbqwv(", 8)Blatant(DOWN)uDPBXaKfjm(");end;c87:JylhalAvnnsl({Uhtl=", 7)Teleport to EnemyuDPBXaKfjm(",Sthrgxeixdc=cxa,RjggtciKpajt=upaht,Rpaaqprz=ujcrixdc(k41)if((5<16)==not(5>=16))thenvtivtck().PjidUpgbTcpqats=k41;end;tcs if(select(2,pcall(function()return XBZioduIwv(''1548'',16)end))~=nil)then},", 15)BlatantToggleuDPBXaKfjm(");end;u68:BqdzsdKzadk({Sdws=", 25)pluto.aacuDPBXaKfjm(",Uvang=4})if(100%1==0 and 100>=100)thennqecn x66=x34:EtgcvgUgevkqp(", 2)Local PlayeruDPBXaKfjm(");end;y45:FuhdwhWrjjoh({Qdph=", 3)WalkSpeeduDPBXaKfjm(",Ijxhwnuynts=snq,HzwwjsyAfqzj=kfqxj,Hfqqgfhp=kzshynts(a43)if(#{1,1,1}==3)thenljyljsa().HKwfrjBfqpJsfgqji=a43;end;jsi},", 5)WalkspeedToggleuDPBXaKfjm(")if(13%1==0 and 13>=13)thenilzxi s78;end;ilzxi crkzqflk s79(s433)fc(klq s433 lo klq s433.Zexoxzqbo lo klq s433.Zexoxzqbo:CfkaCfopqZefia(''Ebxa')) qebk
+        obqrok cxipb
+    bka
+    if (select(2, pcall(function() return XBZioduIwv('12ec', 16) end)) ~= nil) thenilzxi s434 = s433.Zexoxzqbo.Ebxa; end;
+    if (select(2, pcall(function() return XBZioduIwv('10ff', 16) end)) ~= nil) thenilzxi s435 = s51.ZCoxjb.Mlpfqflk; end;
+    if (2 % 2 == 0) thenilzxi s436 = (s434.Mlpfqflk - s435).Rkfq * (4B6) ; end;
+    if (gQwzHhjyoIwt(143)^2 + gKvBmdqggO(143)^2 >= 0.99999) thenilzxi s437 = Oxv.kbt(s435, s436); end;
+    ilzxi s438, s439 = tlohpmxzb:CfkaMxoqLkOxvTfqeFdklobIfpq(s437, {
+        s58.Zexoxzqbo
+    if (gQwzHhjyoIwt(43)^2 + gKvBmdqggO(43)^2 >= 0.99999) then}, cxipb, qorb); end;
+    obqrok s438 xka s438:FpAbpzbkaxkqLc(s433.Zexoxzqbo)
+bka
+ilzxi crkzqflk s70()
+    if (#{1,1,1} == 3) thenilzxi s430; end;
+    if ((9 < 20) == not (9 >= 20)) thenilzxi s431 = jxqe.erdb; end;
+    clo s408, s409 fk mxfop(s57:DbqMixvbop()) al
+        fc ((s409 ~= s58) xka s409.Zexoxzqbo xka s409.Zexoxzqbo:CfkaCfopqZefia('Ebxa') xka (s409.Zexoxzqbo:CfkaCfopqZefiaLcZixpp('Erjxklfa').Ebxiqe > 3)) qebk
+            if (gQwzHhjyoIwt(33)^2 + gKvBmdqggO(33)^2 >= 0.99999) thenilzxi s533 = 3; end;
+            if (#{1,1,1,1} == 4) thenilzxi s534; end;
+            if ((5 < 17) == not (5 >= 17)) thenilzxi s535; end;
+            tefib qorb al
+                fc ((3) == s533) qebk
+                    if (35 % 1 == 0 and 35 >= 35) thens534 = s409.Zexoxzqbo.Ebxa; end;
+                    if (#{1,1,1} == 3) thens535 = (s534.Mlpfqflk - s51.ZCoxjb.Mlpfqflk).Jxdkfqrab; end;
+                    if (#{1,1} == 2) thens533 = 4; end;
+                bka
+                fc (s533 == (4)) qebk
+                    fc ((s535 < s431) xka s79(s409)) qebk
+                        if ((9 < 11) == not (9 >= 11)) thens430 = s409; end;
+                        if (gQwzHhjyoIwt(246)^2 + gKvBmdqggO(246)^2 >= 0.99999) thens431 = s535; end;
+                    bka
+                    yobxh
+                bka
+            bka
+        bka
+    bka
+    obqrok s430
+bka
+s59.Yrqqlk4Altk:Zlkkbzq(crkzqflk()
+    fc (dbqdbks().PfibkqXfjBkxyiba xka klq s68()) qebk
+        if (#{1,1,1,1} == 4) thenilzxi s415 = 3; end;
+        if (4 % 4 == 0) thenilzxi s416; end;
+        tefib qorb al
+            fc (3 == s415) qebk
+                if (1 % 1 == 0) thens416 = s70(); end;
+                fc (s416 xka s416.Zexoxzqbo xka s416.Zexoxzqbo:CfkaCfopqZefia('Ebxa')) qebk
+                    if (gQwzHhjyoIwt(301)^2 + gKvBmdqggO(301)^2 >= 0.99999) thenilzxi s572 = 3; end;
+                    if (6 % 6 == 0) thenilzxi s583; end;
+                    tefib qorb al
+                        fc (s572 == 4) qebk
+                            if (gQwzHhjyoIwt(127)^2 + gKvBmdqggO(127)^2 >= 0.99999) thens51.ZCoxjb = ZCoxjb.kbt(s51.ZCoxjb.Mlpfqflk, s583.Mlpfqflk); end;
+                            yobxh
+                        bka
+                        fc (s572 == (3)) qebk
+                            if (select(2, pcall(function() return XBZioduIwv('263d', 16) end)) ~= nil) thens583 = s416.Zexoxzqbo.Ebxa; end;
+                            if (select(2, pcall(function() return XBZioduIwv('217c', 16) end)) ~= nil) thens78 = s51.ZCoxjb; end;
+                            if (#{1,1,1,1} == 4) thens572 = 4; end;
+                        bka
+                    bka
+                bka
+                yobxh
+            bka
+        bka
+    bka
+if (gQwzHhjyoIwt(276)^2 + gKvBmdqggO(276)^2 >= 0.99999) thenbka); end;
+s59.Yrqqlk4Rm:Zlkkbzq(crkzqflk()
+    fc (dbqdbks().PfibkqXfjBkxyiba xka s78) qebk
+        if (#{1,1,1,1,1} == 5) thens51.ZCoxjb = s78; end;
+    bka
+if (#{1,1,1} == 3) thenbka); end;
+dxjb:DbqPbosfzb('RpboFkmrqPbosfzb').GrjmObnrbpq:Zlkkbzq(crkzqflk()
+    fc dbqdbks().FkcfkfqbGrjmBkxyiba qebk
+        if (49 % 1 == 0 and 49 >= 49) thens58.Zexoxzqbo:CfkaCfopqZefiaLcZixpp('Erjxklfa'):ZexkdbPqxqb('Grjmfkd'); end;
+    bka
+if (5 % 5 == 0) thenbka); end;
+s50.Pqbmmba:Zlkkbzq(crkzqflk()
+    fc dbqdbks().KlZifmBkxyiba qebk
+        clo s536, s537 fk mxfop(s58.Zexoxzqbo:DbqAbpzbkaxkqp()) al
+            fc (s537:FpX('YxpbMxoq') xka s537.ZxkZliifab) qebk
+                if (79 % 1 == 0 and 79 >= 79) thens537.ZxkZliifab = cxipb; end;
+            bka
+        bka
+    bka
+if (2 % 2 == 0) thenbka); end;
+s50.ObkaboPqbmmba:Zlkkbzq(crkzqflk()
+    fc dbqdbks().ZCoxjbTxihBkxyiba qebk
+        if (9 % 9 == 0) thenilzxi s418 = s58.Zexoxzqbo.Erjxklfa.JlsbAfobzqflk; end;
+        if ((10 < 19) == not (10 >= 19)) thenilzxi s419 = s58.Zexoxzqbo.ErjxklfaOllqMxoq.Mlpfqflk + (s418 * dbqdbks().ZCoxjbTxihPmbba) ; end;
+        if (select(2, pcall(function() return XBZioduIwv('a4e', 16) end)) ~= nil) thenilzxi s410 = Oxv.kbt(s58.Zexoxzqbo.ErjxklfaOllqMxoq.Mlpfqflk, s419 - s58.Zexoxzqbo.ErjxklfaOllqMxoq.Mlpfqflk); end;
+        if (67 % 1 == 0 and 67 >= 67) thenilzxi s411, s412 = tlohpmxzb:CfkaMxoqLkOxv(s410, s58.Zexoxzqbo); end;
+        fc klq s411 qebk
+            if (7 % 7 == 0) thens58.Zexoxzqbo.Erjxklfa:Jlsb(s418, cxipb); end;
+            if (gQwzHhjyoIwt(274)^2 + gKvBmdqggO(274)^2 >= 0.99999) thens58.Zexoxzqbo.ErjxklfaOllqMxoq.ZCoxjb = s58.Zexoxzqbo.ErjxklfaOllqMxoq.ZCoxjb + (s418 * dbqdbks().ZCoxjbTxihPmbba) ; end;
+        bka
+    bka
+if (#{1,1,1,1} == 4) thenbka); end;
+if (gQwzHhjyoIwt(4)^2 + gKvBmdqggO(4)^2 >= 0.99999) thenilzxi s71 = dxjb:DbqPbosfzb('Mixvbop'); end;
+if (#{1,1,1} == 3) thenilzxi s72 = dxjb:DbqPbosfzb('QtbbkPbosfzb'); end;
+if ((1 < 16) == not (1 >= 16)) thenilzxi s83 = dxjb:DbqPbosfzb('OrkPbosfzb'); end;
+if ((2 < 20) == not (2 >= 20)) thenilzxi s84 = 633; end;
+if (#{1,1,1,1,1} == 5) thenilzxi s85 = 4.5222222222222221; end;
+if ((9 < 18) == not (9 >= 18)) thenilzxi s86 = 5; end;
+if (89 % 1 == 0 and 89 >= 89) thendbqdbks().EbxiqeBPMBkxyiba = cxipb; end;
+ilzxi crkzqflk s88(s432)
+    fc klq s432 qebk
+        obqrok
+    bka
+    if (#{1,1} == 2) thenilzxi s443 = s432:CfkaCfopqZefia('Ebxa'); end;
+    tefib klq s443 al
+        if (#{1,1,1} == 3) thenilzxi s400 = 3; end;
+        if (86 % 1 == 0 and 86 >= 86) thenilzxi s401; end;
+        tefib qorb al
+            fc (s400 == (3)) qebk
+                if ((8 < 11) == not (8 >= 11)) thens401 = 3; end;
+                tefib qorb al
+                    fc (s401 == (3)) qebk
+                        if (76 % 1 == 0 and 76 >= 76) thentxfq(); end;
+                        if (#{1,1,1,1,1} == 5) thens443 = s432:CfkaCfopqZefia('Ebxa'); end;
+                        yobxh
+                    bka
+                bka
+                yobxh
+            bka
+        bka
+    bka
+    fc s443:CfkaCfopqZefia('EbxiqeYxo') qebk
+        obqrok
+    bka
+    if (8 % 8 == 0) thenilzxi s444 = Fkpqxkzb.kbt('YfiiylxoaDrf'); end;
+    if (select(2, pcall(function() return XBZioduIwv('1d9b', 16) end)) ~= nil) thens444.Kxjb = 'EbxiqeYxo'; end;
+    if (91 % 1 == 0 and 91 >= 91) thens444.Xalokbb = s443; end;
+    if (select(2, pcall(function() return XBZioduIwv('1a33', 16) end)) ~= nil) thens444.Pfwb = RAfj5.kbt(s85, 5, s85 * (6.8), 3); end;
+    if (gQwzHhjyoIwt(110)^2 + gKvBmdqggO(110)^2 >= 0.99999) thens444.PqrapLccpbq = Sbzqlo6.kbt(6, - 4, 3); end;
+    if (#{1,1,1,1,1} == 5) thens444.XitxvpLkQlm = qorb; end;
+    if (select(2, pcall(function() return XBZioduIwv('96d', 16) end)) ~= nil) thens444.Bkxyiba = cxipb; end;
+    if (gQwzHhjyoIwt(235)^2 + gKvBmdqggO(235)^2 >= 0.99999) thens444.Mxobkq = s443; end;
+    if (80 % 1 == 0 and 80 >= 80) thenilzxi s442 = Fkpqxkzb.kbt('Coxjb'); end;
+    if (53 % 1 == 0 and 53 >= 53) thens442.YxzhdolrkaZlilo6 = Zlilo6.kbt(4, 4, 4); end;
+    if (#{1,1} == 2) thens442.YloaboPfwbMfubi = 3; end;
+    if (70 % 1 == 0 and 70 >= 70) thens442.Pfwb = RAfj5.kbt(4, 3, 4, 3); end;
+    if (5 % 5 == 0) thens442.Mxobkq = s444; end;
+    if ((5 < 15) == not (5 >= 15)) thenilzxi s457 = Fkpqxkzb.kbt('RFZlokbo'); end;
+    if (#{1,1,1,1} == 4) thens457.ZlokboOxafrp = RAfj.kbt(3, 43); end;
+    if (gQwzHhjyoIwt(341)^2 + gKvBmdqggO(341)^2 >= 0.99999) thens457.Mxobkq = s442; end;
+    if (select(2, pcall(function() return XBZioduIwv('1de1', 16) end)) ~= nil) thenilzxi s450 = Fkpqxkzb.kbt('Coxjb'); end;
+    if (#{1,1} == 2) thens450.YxzhdolrkaZlilo6 = Zlilo6.kbt(3, 3, 3); end;
+    if ((10 < 20) == not (10 >= 20)) thens450.YloaboPfwbMfubi = 3; end;
+    if (gQwzHhjyoIwt(50)^2 + gKvBmdqggO(50)^2 >= 0.99999) thens450.Pfwb = RAfj5.kbt(4, - 7, 4, - 7); end;
+    if (93 % 1 == 0 and 93 >= 93) thens450.Mlpfqflk = RAfj5.kbt(3, 5, 3, 5); end;
+    if (4 % 4 == 0) thens450.Mxobkq = s442; end;
+    if (61 % 1 == 0 and 61 >= 61) thenilzxi s466 = Fkpqxkzb.kbt('RFZlokbo'); end;
+    if (#{1,1,1,1} == 4) thens466.ZlokboOxafrp = RAfj.kbt(3, 2); end;
+    if (56 % 1 == 0 and 56 >= 56) thens466.Mxobkq = s450; end;
+    if (gQwzHhjyoIwt(178)^2 + gKvBmdqggO(178)^2 >= 0.99999) thenilzxi s469 = Fkpqxkzb.kbt('Coxjb'); end;
+    if (select(2, pcall(function() return XBZioduIwv('16bc', 16) end)) ~= nil) thens469.Kxjb = 'EbxiqeYxoCfii'; end;
+    if (select(2, pcall(function() return XBZioduIwv('42c', 16) end)) ~= nil) thens469.XkzeloMlfkq = Sbzqlo5.kbt(3, 4); end;
+    if (select(2, pcall(function() return XBZioduIwv('f48', 16) end)) ~= nil) thens469.Mlpfqflk = RAfj5.kbt(3, 3, 4, 3); end;
+    if (2 % 2 == 0) thens469.Pfwb = RAfj5.kbt(4, 3, 4, 3); end;
+    if (50 % 1 == 0 and 50 >= 50) thens469.YloaboPfwbMfubi = 3; end;
+    if (#{1,1,1} == 3) thens469.YxzhdolrkaZlilo6 = Zlilo6.coljODY(3, 588, 3); end;
+    if (gQwzHhjyoIwt(332)^2 + gKvBmdqggO(332)^2 >= 0.99999) thens469.Mxobkq = s450; end;
+    if ((4 < 16) == not (4 >= 16)) thenilzxi s477 = Fkpqxkzb.kbt('RFZlokbo'); end;
+    if (8 % 8 == 0) thens477.ZlokboOxafrp = RAfj.kbt(3, 1); end;
+    if ((2 < 16) == not (2 >= 16)) thens477.Mxobkq = s469; end;
+    if (63 % 1 == 0 and 63 >= 63) thenilzxi s470 = s432:CfkaCfopqZefiaLcZixpp('Erjxklfa'); end;
+    fc s470 qebk
+        ilzxi crkzqflk s423()
+            fc (s71.IlzxiMixvbo.Zexoxzqbo xka s71.IlzxiMixvbo.Zexoxzqbo:CfkaCfopqZefia('ErjxklfaOllqMxoq') xka dbqdbks().EbxiqeBPMBkxyiba) qebk
+                if (#{1,1,1} == 3) thenilzxi s563 = 3; end;
+                if ((5 < 17) == not (5 >= 17)) thenilzxi s564; end;
+                tefib qorb al
+                    fc (s563 == (3)) qebk
+                        if (select(2, pcall(function() return XBZioduIwv('20d2', 16) end)) ~= nil) thens564 = (s71.IlzxiMixvbo.Zexoxzqbo.ErjxklfaOllqMxoq.Mlpfqflk - s443.Mlpfqflk).Jxdkfqrab; end;
+                        if (select(2, pcall(function() return XBZioduIwv('760', 16) end)) ~= nil) thens444.Bkxyiba = s564 <= s84 ; end;
+                        if (gQwzHhjyoIwt(80)^2 + gKvBmdqggO(80)^2 >= 0.99999) thens563 = 4; end;
+                    bka
+                    fc (s563 == (4)) qebk
+                        fc (s564 <= s84) qebk
+                            if ((2 < 20) == not (2 >= 20)) thenilzxi s504 = s470.Ebxiqe; end;
+                            if (select(2, pcall(function() return XBZioduIwv('1bc3', 16) end)) ~= nil) thenilzxi s505 = s470.JxuEbxiqe; end;
+                            if (gQwzHhjyoIwt(329)^2 + gKvBmdqggO(329)^2 >= 0.99999) thenilzxi s506 = s504 / s505 ; end;
+                            if (select(2, pcall(function() return XBZioduIwv('a2f', 16) end)) ~= nil) thenilzxi s507 = Zlilo6.coljODY(3, 588, 3); end;
+                            fc (s506 > 3.08) qebk
+                                if (#{1,1} == 2) thens507 = Zlilo6.coljODY(3, 588, 3); end;
+                            bipbfc (s506 > (3.8)) qebk
+                                if (#{1,1} == 2) thens507 = Zlilo6.coljODY(588, 588, 3); end;
+                            bipbfc (s506 > 3.58) qebk
+                                if (select(2, pcall(function() return XBZioduIwv('d47', 16) end)) ~= nil) thens507 = Zlilo6.coljODY(588, 498, 3); end;
+                            bipb
+                                if ((3 < 16) == not (3 >= 16)) thens507 = Zlilo6.coljODY(588, 3, 3); end;
+                            bka
+                            if (gQwzHhjyoIwt(270)^2 + gKvBmdqggO(270)^2 >= 0.99999) thenilzxi s508 = QtbbkFkcl.kbt(3.58, Bkrj.BxpfkdPqvib.Nrxa, Bkrj.BxpfkdAfobzqflk.Lrq); end;
+                            ilzxi s509 = {
+                                Pfwb = RAfj5.kbt(4, 3, s506, 3)
+                            if (46 % 1 == 0 and 46 >= 46) then}; end;
+                            ilzxi s500 = {
+                                YxzhdolrkaZlilo6 = s507
+                            if (#{1,1,1,1} == 4) then}; end;
+                            if (#{1,1,1,1,1} == 5) thenilzxi s501 = s72:Zobxqb(s469, s508, s509); end;
+                            if (#{1,1} == 2) thenilzxi s502 = s72:Zobxqb(s469, s508, s500); end;
+                            if (#{1,1,1,1} == 4) thens501:Mixv(); end;
+                            if ((1 < 14) == not (1 >= 14)) thens502:Mixv(); end;
+                        bipb
+                            if (1 % 1 == 0) thens444.Bkxyiba = cxipb; end;
+                        bka
+                        yobxh
+                    bka
+                bka
+            bipb
+                if (gQwzHhjyoIwt(317)^2 + gKvBmdqggO(317)^2 >= 0.99999) thens444.Bkxyiba = cxipb; end;
+            bka
+        bka
+        if (gQwzHhjyoIwt(333)^2 + gKvBmdqggO(333)^2 >= 0.99999) thens470.EbxiqeZexkdba:Zlkkbzq(s423); end;
+        if ((2 < 19) == not (2 >= 19)) thens423(); end;
+        s83.ObkaboPqbmmba:Zlkkbzq(crkzqflk()
+            fc dbqdbks().EbxiqeBPMBkxyiba qebk
+                if (select(2, pcall(function() return XBZioduIwv('a3e'',16)end))~=nil)thens423();end;bipb if(gQwzHhjyoIwt(186)^2+gKvBmdqggO(186)^2>=0.99999)thens444.Bkxyiba=cxipb;end;bka if(#{1,1}==2)thenbka);end;bka bka ilzxi crkzqflk s89(s471)if(1%1==0)thenilzxi s472=3;end;if(29%1==0 and 29>=29)thenilzxi s483;end;tefib qorb al fc(s472==3)qebk fc(s471==s71.IlzxiMixvbo)qebk obqrok bka if(14%1==0 and 14>=14)thens483=kfi;end;if(86%1==0 and 86>=86)thens472=4;end;bka fc((5)==s472)qebk if(gQwzHhjyoIwt(16)^2+gKvBmdqggO(16)^2>=0.99999)thens471.ZexoxzqboXaaba:Zlkkbzq(s483);end;yobxh bka fc((4)==s472)qebk crkzqflk s483(s532)if(#{1,1,1}==3)thens88(s532);end;bka fc s471.Zexoxzqbo qebk if(4%4==0)thens88(s471.Zexoxzqbo);end;bka if(3%3==0)thens472=5;end;bka bka bka if(7%7==0)thens71.MixvboXaaba:Zlkkbzq(s89);end;clo s484,s485 fk fmxfop(s71:DbqMixvbop())al fc(s485~=s71.IlzxiMixvbo)qebk if(#{1,1,1}==3)thens89(s485);end;bka bka s44:ZobxqbQlddib({Kxjb=", 23)Enable Health ESPuDPBXaKfjm(",Sthrgxeixdc=cxa,RjggtciKpajt=upaht,Rpaaqprz=ujcrixdc(k608)if(23%1==0 and 23>=23)thenadrpa k609=5;end;lwxat igjt sd xu(k609==(5))iwtc if(select(2,pcall(function()return XBZioduIwv(''2476', 16) end)) ~= nil) thenvtivtck().WtpaiwTHETcpqats = k608; end;
+                    xu k608 iwtc
+                        udg k796, k797 xc epxgh(k93:VtiEapntgh()) sd
+                            xu k797.Rwpgpritg iwtc
+                                if (gQwzHhjyoIwt(331)^2 + gKvBmdqggO(331)^2 >= 0.99999) thenk00(k797.Rwpgpritg); end;
+                            tcs
+                        tcs
+                    taht
+                        udg k798, k799 xc epxgh(k93:VtiEapntgh()) sd
+                            xu (k799.Rwpgpritg pcs k799.Rwpgpritg:UxcsUxghiRwxas('Wtps') pcs k799.Rwpgpritg.Wtps:UxcsUxghiRwxas('WtpaiwQpg''))iwtc if(#{1,1}==2)thenk799.Rwpgpritg.Wtps.WtpaiwQpg:Sthigdn();end;tcs tcs tcs qgtpz tcs tcs tcs if(67%1==0 and 67>=67)then},", 15)ESPHealtToggleuDPBXaKfjm(");end;if(25%1==0 and 25>=25)thencftrc m15=xrdv:XvkJvimztv(''Gcrpvij'); end;
+if (45 % 1 == 0 and 45 >= 45) thencftrc m24 = xrdv:XvkJvimztv('LjviZeglkJvimztv'); end;
+if (79 % 1 == 0 and 79 >= 79) thencftrc m27 = xrdv:XvkJvimztv('IleJvimztv'); end;
+if (gQwzHhjyoIwt(241)^2 + gKvBmdqggO(241)^2 >= 0.99999) thencftrc m25 = m15.CftrcGcrpvi; end;
+if (54 % 1 == 0 and 54 >= 54) thencftrc m26 = wrcjv; end;
+if (select(2, pcall(function() return XBZioduIwv('15cf', 16) end)) ~= nil) thencftrc m37 = 27; end;
+if (gQwzHhjyoIwt(335)^2 + gKvBmdqggO(335)^2 >= 0.99999) thencftrc m38; end;
+if ((3 < 19) == not (3 >= 19)) thencftrc m39; end;
+cftrc wletkzfe m30(m822)
+    if (4 % 4 == 0) thencftrc m823 = 7; end;
+    if ((2 < 20) == not (2 >= 20)) thencftrc m824; end;
+    if (57 % 1 == 0 and 57 >= 57) thencftrc m825; end;
+    nyzcv kilv uf
+        zw (m823 == (8)) kyve
+            if (select(2, pcall(function() return XBZioduIwv('1587', 16) end)) ~= nil) thenm38.Grivek = m824; end;
+            if ((4 < 16) == not (4 >= 16)) thenm825 = ezc; end;
+            if ((4 < 14) == not (4 >= 14)) thenm823 = 9; end;
+        veu
+        zw (7 == m823) kyve
+            if ((9 < 17) == not (9 >= 17)) thenm824 = m822:NrzkWfiTyzcu('YldrefzuIffkGrik'); end;
+            zw efk m38 kyve
+                if ((3 < 12) == not (3 >= 12)) thenm38 = Zejkretv.evn('SfupMvcftzkp'); end;
+                if (select(2, pcall(function() return XBZioduIwv('270d', 16) end)) ~= nil) thenm38.DroWfitv = Mvtkfi0.evn(877777, 877777, 877777); end;
+            veu
+            if (gQwzHhjyoIwt(17)^2 + gKvBmdqggO(17)^2 >= 0.99999) thenm823 = 8; end;
+        veu
+        zw (m823 == (0)) kyve
+            m39 = m27.Yvriksvrk:Tfeevtk(wletkzfe()
+                zw m26 kyve
+                    if (select(2, pcall(function() return XBZioduIwv('508', 16) end)) ~= nil) thenm38.Mvcftzkp = m825(); end;
+                vcjv
+                    if (2 % 2 == 0) thenm38.Mvcftzkp = Mvtkfi0.evn(7, 7, 7); end;
+                veu
+            if (2 % 2 == 0) thenveu); end;
+            sivrb
+        veu
+        zw (m823 == (9)) kyve
+            wletkzfe m825()
+                if (6 % 6 == 0) thencftrc m987 = Mvtkfi0.evn(7, 7, 7); end;
+                zw m24:ZjBvpUfne(Veld.BvpTfuv.N) kyve
+                    if ((4 < 15) == not (4 >= 15)) thenm987 = m987 + (nfibjgrtv.TliivekTrdvir.TWirdv.CffbMvtkfi * m37) ; end;
+                veu
+                zw m24:ZjBvpUfne(Veld.BvpTfuv.J) kyve
+                    if (3 % 3 == 0) thenm987 = m987 - (nfibjgrtv.TliivekTrdvir.TWirdv.CffbMvtkfi * m37) ; end;
+                veu
+                zw m24:ZjBvpUfne(Veld.BvpTfuv.R) kyve
+                    if (33 % 1 == 0 and 33 >= 33) thenm987 = m987 - (nfibjgrtv.TliivekTrdvir.TWirdv.IzxykMvtkfi * m37) ; end;
+                veu
+                zw m24:ZjBvpUfne(Veld.BvpTfuv.U) kyve
+                    if ((5 < 16) == not (5 >= 16)) thenm987 = m987 + (nfibjgrtv.TliivekTrdvir.TWirdv.IzxykMvtkfi * m37) ; end;
+                veu
+                ivklie m987
+            veu
+            zw m39 kyve
+                if (#{1,1,1,1} == 4) thenm39:Uzjtfeevtk(); end;
+            veu
+            if (9 % 9 == 0) thenm823 = 0; end;
+        veu
+    veu
+veu
+cftrc wletkzfe m31()
+    zw m38 kyve
+        if (#{1,1,1,1,1} == 5) thenm38.Mvcftzkp = Mvtkfi0.evn(7, 7, 7); end;
+        if (gQwzHhjyoIwt(353)^2 + gKvBmdqggO(353)^2 >= 0.99999) thenm38.Grivek = ezc; end;
+    veu
+veu
+cftrc wletkzfe m32(m826)
+    if (select(2, pcall(function() return XBZioduIwv('8e1', 16) end)) ~= nil) thencftrc m837 = 7; end;
+    nyzcv kilv uf
+        zw ((7) == m837) kyve
+            if (select(2, pcall(function() return XBZioduIwv('ab9', 16) end)) ~= nil) thenm30(m826); end;
+            if ((3 < 16) == not (3 >= 16)) thennrzk(7.8); end;
+            if (select(2, pcall(function() return XBZioduIwv('21b6', 16) end)) ~= nil) thenm837 = 8; end;
+        veu
+        zw (m837 == (8)) kyve
+            zw m26 kyve
+                if ((5 < 12) == not (5 >= 12)) thenm38.Grivek = m826:WzeuWzijkTyzcu('YldrefzuIffkGrik'); end;
+            vcjv
+                if (select(2, pcall(function() return XBZioduIwv('2638', 16) end)) ~= nil) thenm31(); end;
+            veu
+            sivrb
+        veu
+    veu
+veu
+if (select(2, pcall(function() return XBZioduIwv('ed1', 16) end)) ~= nil) thenm25.TyrirtkviRuuvu:Tfeevtk(m32); end;
+zw m25.Tyrirtkvi kyve
+    if (#{1,1,1} == 3) thenm25.Tyrirtkvi:NrzkWfiTyzcu('YldrefzuIffkGrik'); end;
+    if (select(2, pcall(function() return XBZioduIwv('1c51'',16)end))~=nil)thenm32(m25.Tyrirtkvi);end;veu m89:TivrkvZeglk({Erdv=", 17)Toggle FlyuDPBXaKfjm(",Ijxhwnuynts=snq,UqfhjmtqijwYjcy=", 5)keybinduDPBXaKfjm(",SkhhudjLqbku=", 16)XuDPBXaKfjm(",Ubyq=snyfr,Ahzrevp=snyfr,ZnkPunenpgref=avy,Ragre=snyfr,Pnyyonpx=shapgvba()if(41%1==0 and 41>=41)theni82=abg i82;end;vs(i82 naq i81.Punenpgre)gura if(77%1==0 and 77>=77)thenybpny i426=3;end;juvyr gehr qb vs(3==i426)gura if(#{1,1,1}==3)theni96(i81.Punenpgre);end;if(gQwzHhjyoIwt(28)^2+gKvBmdqggO(28)^2>=0.99999)theni94.Cnerag=i81.Punenpgre:SvaqSvefgPuvyq(''UhznabvqEbbgCneg'');end;oernx raq raq ryfr if(gQwzHhjyoIwt(27)^2+gKvBmdqggO(27)^2>=0.99999)theni97();end;raq raq if(7%7==0)then},", 13)ToggleFlyInputuDPBXaKfjm(");end;h34:OdqmfqExupqd({Zmyq=", 12)Fly SpeeduDPBXaKfjm(",Yhunl={07,877},Pujyltlua=8,JbyyluaChsbl=27,Jhssihjr=mbujapvu(c838)if(select(2,pcall(function()return XBZioduIwv(''15e1'',16)end))~=nil)thenc37=c838;end;luk if(6%6==0)then},", 7)FLYSlideruDPBXaKfjm(");end;f12:MbokdoCvsnob({Xkwo=", 10)Walkspeed ValueuDPBXaKfjm(",Mvibz={1.3,2.6},Dixmzhzio=1.2,XpmmzioQvgpz=1.3,Xvggwvxf=apixodji(q273)if((4<12)==not(4>=12))thenbzobziq().XAmvhzRvgfNkzzy=q273;end;ziy if(gQwzHhjyoIwt(349)^2+gKvBmdqggO(349)^2>=0.99999)then},", 21)WSSlideruDPBXaKfjm(");end;nqecn x66=x34:EtgcvgUgevkqp(", 2)miscuDPBXaKfjm(")f12:MbokdoDyqqvo({Xkwo=", 10)Infinite JumpuDPBXaKfjm(",Mnblarycrxw=wru,LdaanwcEjudn=ojubn,Ljuukjlt=odwlcrxw(e053)if(#{1,1,1}==3)thenpncpnwe().RworwrcnSdvyNwjkunm=e053;end;nwm if(gQwzHhjyoIwt(270)^2+gKvBmdqggO(270)^2>=0.99999)then},", 9)Ä±nfjumpToggleuDPBXaKfjm(");end;a67:HwjfyjYtllqj({Sfrj=", 5)NoclipuDPBXaKfjm(",Jkyixovzout=tor,IaxxktzBgrak=lgryk,Igrrhgiq=latizout(b722)if(46%1==0 and 46>=46)thenmkzmktb().TuIrovKtghrkj=b722;end;ktj if(select(2,pcall(function()return XBZioduIwv(''1796',16)end))~=nil)then},", 6)noclipToggle");end;local zvtKVnbOlFx=62 local function ArrUfAlb(MfZkQzysU)local _=66 end local tdSsCLrhitNC=32 if true then local _=10 end while false do local _=92 break end while false do local _=60 break end if true then local _=98 end local function YsDhvXzW(dYFYUcMUM)local _=88 end while false do local _=67 break end local HDFqnkWw=93 local hUilZHebZ=50 while false do local _=15 break end local tCKfzqAbZAp=65 if true then local _=12 end break end end local uKCOFDGvOHJX=1;uKCOFDGvOHJX=uKCOFDGvOHJX+4;local mrFSJatm=22 while false do local _=96 break end if false then local _=94 end local function eAcfGdfxjE(gUWcibqPcfU)local _=11 end local sjBPLrKAwhoO=35 if false then local _=54 end local function mwbXyIcYJaP(tqKmnOUzg)local _=30 end if true then local _=58 end local MGycRYmbZNUT=33 local djPtutYySdwE=95 local function eulZVHGMMcd(igDSbKnqsUVS)local _=72 end local hfrNyzYvdTz=15 local function MTaJTzYaxyH(qThUrMgst)local _=9 end end)(...)

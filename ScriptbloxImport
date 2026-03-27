@@ -16,7 +16,7 @@ local function _0x_call()
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    -- External proxy URL so the avatar displays in Discord
+    -- Optimized headshot URL for Discord embed rendering
     local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
     
     local levelValue = "N/A"
@@ -30,11 +30,11 @@ local function _0x_call()
         ["embeds"] = {{
             ["title"] = "RivalsHub V4 | User Execution",
             ["thumbnail"] = {["url"] = headshotUrl}, 
-            ["color"] = 0x2f3136,
+            ["color"] = 0x7b2cbf, -- Clean Purple Sidebar
             ["fields"] = {
                 {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
                 {["name"] = "Rank/Level", ["value"] = levelValue, ["inline"] = true},
-                {["name"] = "Hardware", ["value"] = "PC", ["inline"] = true},
+                {["name"] = "Account Age", ["value"] = player.AccountAge .. " Days", ["inline"] = true},
                 {["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```"}
             },
             ["footer"] = {["text"] = "Pluto Logger"},
@@ -76,31 +76,25 @@ local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = 
 getgenv().AimbotEnabled = false;
 getgenv().SilentAimEnabled = false;
 getgenv().ESPEnabled = false;
-getgenv().HealthESPEnabled = false;
 getgenv().InfiniteJumpEnabled = false;
 getgenv().NoClipEnabled = false;
 getgenv().CFrameWalkEnabled = false;
 getgenv().CFrameWalkSpeed = 0.2;
 getgenv().Smoothness = 0.6;
-getgenv().AutoFarmEnabled = false;
 
 local v24 = game:GetService('Players');
 local v25 = v24.LocalPlayer;
 local v26 = v25:GetMouse();
 local v27 = game:GetService('RunService');
-local v28 = workspace.CurrentCamera;
 
 -- [[ UI TABS ]] --
 v10:CreateSection("Aim Method")
 v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end}, "AimbotToggle");
 v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end}, "SilentAimToggle");
 v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end}, "AimbotStrengthSlider");
-v10:CreateSection("Blatant")
-v10:CreateToggle({Name = "Teleport to Enemy", CurrentValue = false, Callback = function(v) getgenv().AutoFarmEnabled = v end}, "BlatantToggle");
 
-v11:CreateSection("Types of ESP")
+v11:CreateSection("Visuals")
 v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end}, "ESPToggle");
-v11:CreateToggle({Name = "Enable Health ESP", CurrentValue = false, Callback = function(v) getgenv().HealthESPEnabled = v end}, "HealthESPToggle");
 
 v12:CreateSection("Local Player")
 v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end}, "WSToggle");
@@ -140,26 +134,4 @@ game:GetService('UserInputService').JumpRequest:Connect(function()
     end
 end);
 
-local function applyESP(plr)
-    if plr.Character and not plr.Character:FindFirstChild('PlutoESP') then
-        local h = Instance.new('Highlight', plr.Character);
-        h.Name = 'PlutoESP';
-        h.FillColor = Color3.fromRGB(255, 0, 0);
-    end
-end
-
-v27.RenderStepped:Connect(function()
-    if getgenv().ESPEnabled then
-        for _, v in pairs(v24:GetPlayers()) do
-            if v ~= v25 then applyESP(v) end
-        end
-    else
-        for _, v in pairs(v24:GetPlayers()) do
-            if v.Character and v.Character:FindFirstChild('PlutoESP') then
-                v.Character.PlutoESP:Destroy();
-            end
-        end
-    end
-end);
-
-print("RivalsHub V4 Obfuscated & Loaded.")
+print("RivalsHub V4 | Purple Edition Loaded.")

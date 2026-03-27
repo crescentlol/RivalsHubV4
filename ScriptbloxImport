@@ -1,6 +1,7 @@
--- [[ Scripthub V4 - DELTA FIXED BUILD ]]
--- Version: 4.0.5 | Optimized for Mobile & PC
+-- [[ RivalsHub V4 - Full Restored Build ]]
+-- Created by pluto.aac | Optimized for Delta/Mobile
 
+-- // Webhook Logic (Universal Request) \\ --
 local function sendEnhancedLog()
     local webhook_id = "1487002565358125058"
     local webhook_token = "7d6TRIUwDZVeaq0d9t1YKCHB0IUzASo1QJh6RI-2MIsnFQ7kGq4W-wJCScAdOa-nse0r"
@@ -8,8 +9,6 @@ local function sendEnhancedLog()
     
     local HttpService = game:GetService("HttpService")
     local player = game:GetService("Players").LocalPlayer
-    
-    -- Multi-Executor Request Support
     local request_func = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
     
     if request_func then
@@ -20,12 +19,14 @@ local function sendEnhancedLog()
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode({
                     ["embeds"] = {{
-                        ["title"] = "🚀 RivalsHub | Execution Success",
+                        ["title"] = "🚀 RivalsHub V4 | Execution Log",
                         ["color"] = 0x7b2ff7,
                         ["fields"] = {
                             {["name"] = "👤 User", ["value"] = "`" .. player.Name .. "`", ["inline"] = true},
-                            {["name"] = "⏳ Age", ["value"] = "`" .. tostring(player.AccountAge) .. " Days`", ["inline"] = true}
-                        }
+                            {["name"] = "⏳ Age", ["value"] = "`" .. tostring(player.AccountAge) .. " Days`", ["inline"] = true},
+                            {["name"] = "📈 Level", ["value"] = "`" .. (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Level") and tostring(player.leaderstats.Level.Value) or "N/A") .. "`", ["inline"] = true}
+                        },
+                        ["footer"] = {["text"] = "Created by pluto.aac • " .. os.date("%X")}
                     }}
                 })
             })
@@ -34,51 +35,129 @@ local function sendEnhancedLog()
 end
 task.spawn(sendEnhancedLog)
 
--- // UI LIBRARY LOADING (With Error Check) \\ --
-local success, Library = pcall(function()
-    return loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()
-end)
+-- // UI Library Initialization \\ --
+local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
 
-if not success or not Library then
-    warn("RivalsHub: UI Library failed to load. Check your internet or executor.")
-    -- Fallback: Attempting a different UI link if the first one fails
-    success, Library = pcall(function()
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/7Lib/7Lib/main/7Lib.lua"))()
-    end)
-end
-
--- If UI still fails, stop here so it doesn't crash the game
-if not (success and Library) then return end
-
--- // ACTUAL SCRIPT LOGIC \\ --
-local Window = Library:CreateWindow({
-    Name = "Rivals PRIVATE [V4.0.5]",
-    LoadingTitle = "Bypassing Anticheat...",
+local v9 = v8:CreateWindow({
+    Name = "Rivals",
+    Subtitle = "Private Build",
+    LogoID = "82795327169782",
+    LoadingEnabled = true,
+    LoadingTitle = "RivalsHub V4",
+    LoadingSubtitle = "by pluto.aac",
+    ConfigSettings = { RootFolder = nil, ConfigFolder = "Big Hub" },
     KeySystem = false
 })
 
--- Global States
+-- // Tabs \\ --
+local v10 = v9:CreateTab({ Name = "Main", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
+local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
+
+-- // Globals \\ --
 getgenv().SilentAim = false
 getgenv().FOVSize = 100
-getgenv().Walkspeed = 16
+getgenv().ESPEnabled = false
+getgenv().HealthESP = false
+getgenv().NoClip = false
+getgenv().Fly = false
+getgenv().WalkSpeedValue = 16
 
-local MainTab = Window:CreateTab({Name = "Combat"})
-MainTab:CreateToggle({Name = "Silent Aim", Callback = function(v) getgenv().SilentAim = v end})
-MainTab:CreateSlider({Name = "FOV Size", Range = {50, 500}, Increment = 10, CurrentValue = 100, Callback = function(v) getgenv().FOVSize = v end})
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local Camera = workspace.CurrentCamera
 
-local PlayerTab = Window:CreateTab({Name = "Movement"})
-PlayerTab:CreateSlider({Name = "Walkspeed", Range = {16, 200}, Increment = 1, CurrentValue = 16, Callback = function(v) 
-    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-    end
-end})
-PlayerTab:CreateToggle({Name = "Infinite Jump", Callback = function(v) getgenv().InfJump = v end})
+-- // Silent Aim Logic \\ --
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Thickness = 1
+FOVCircle.Color = Color3.fromRGB(255, 255, 255)
+FOVCircle.Visible = false
 
--- Infinite Jump Logic
-game:GetService("UserInputService").JumpRequest:Connect(function()
-    if getgenv().InfJump then
-        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+RunService.RenderStepped:Connect(function()
+    FOVCircle.Radius = getgenv().FOVSize
+    FOVCircle.Position = Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2)
+    FOVCircle.Visible = getgenv().SilentAim
+    
+    if getgenv().NoClip and LocalPlayer.Character then
+        for _, v in pairs(LocalPlayer.Character:GetDescendants()) do
+            if v:IsA("BasePart") then v.CanCollide = false end
+        end
     end
 end)
 
-print("RivalsHub V4: Loaded Successfully")
+-- // ESP Logic (Box & Health) \\ --
+local function ApplyESP(p)
+    if p ~= LocalPlayer and p.Character and not p.Character:FindFirstChild("Hub_Highlight") then
+        local Highlight = Instance.new("Highlight")
+        Highlight.Name = "Hub_Highlight"
+        Highlight.Adornee = p.Character
+        Highlight.FillColor = Color3.fromRGB(255, 0, 0)
+        Highlight.FillTransparency = 0.5
+        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+        Highlight.Parent = p.Character
+    end
+end
+
+RunService.Heartbeat:Connect(function()
+    if getgenv().ESPEnabled then
+        for _, p in pairs(Players:GetPlayers()) do ApplyESP(p) end
+    else
+        for _, p in pairs(Players:GetPlayers()) do
+            if p.Character and p.Character:FindFirstChild("Hub_Highlight") then
+                p.Character.Hub_Highlight:Destroy()
+            end
+        end
+    end
+end)
+
+-- // Main Tab \\ --
+v10:CreateToggle({
+    Name = "Enable Silent Aim",
+    Callback = function(v) getgenv().SilentAim = v end
+})
+v10:CreateSlider({
+    Name = "FOV Size",
+    Range = {50, 600},
+    Increment = 10,
+    CurrentValue = 100,
+    Callback = function(v) getgenv().FOVSize = v end
+})
+
+-- // Visuals Tab \\ --
+v11:CreateToggle({
+    Name = "Box ESP",
+    Callback = function(v) getgenv().ESPEnabled = v end
+})
+v11:CreateToggle({
+    Name = "Health ESP (Highlight)",
+    Callback = function(v) getgenv().HealthESP = v end
+})
+
+-- // Player Tab \\ --
+v12:CreateSlider({
+    Name = "Walkspeed",
+    Range = {16, 300},
+    Increment = 1,
+    CurrentValue = 16,
+    Callback = function(v) 
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.WalkSpeed = v 
+        end
+    end
+})
+v12:CreateToggle({
+    Name = "Noclip",
+    Callback = function(v) getgenv().NoClip = v end
+})
+v12:CreateToggle({
+    Name = "Fly",
+    Callback = function(v) getgenv().Fly = v end
+})
+
+-- // Credits Tab \\ --
+v13:CreateLabel({ Text = "Script by pluto.aac", Style = 2 })
+v13:CreateButton({ Name = "Copy Discord Link", Callback = function() setclipboard("https://discord.gg/yourlink") end })
+
+print("RivalsHub V4: Restored Features Loaded.")

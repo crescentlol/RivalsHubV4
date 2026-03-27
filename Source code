@@ -64,5 +64,3 @@ end
 
 task.spawn(Init)
 
--- [[ LOAD UI FROM PASTEBIN ]]
-loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()

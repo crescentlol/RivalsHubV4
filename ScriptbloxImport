@@ -19,7 +19,7 @@ local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = 
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- [[ 2. SYSTEM & LOGGING (With Functional Join Button) ]] --
+-- [[ 2. SYSTEM (With Functional Join Button) ]] --
 task.spawn(function()
     local HttpService = game:GetService("HttpService")
     local lp = game:GetService("Players").LocalPlayer

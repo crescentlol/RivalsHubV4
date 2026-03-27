@@ -1,3 +1,4 @@
+-- [[ LUNA UI - RIVALSHUB V4 ]] --
 local v0 = string.char;
 local v1 = string.byte;
 local v2 = string.sub;
@@ -15,7 +16,7 @@ local function _0x_call()
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    -- This gets the 420x420 headshot for the top right thumbnail
+    -- Fetches the user's Headshot for the top-right of the embed
     local headshot, isReady = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
     
     local levelValue = "N/A"
@@ -27,16 +28,15 @@ local function _0x_call()
 
     local data = {
         ["embeds"] = {{
-            ["title"] = "RivalsHub V4 | User Execution",
-            ["thumbnail"] = {["url"] = headshot}, -- Headshot image
+            ["title"] = "RivalsHub V4 | Log Report",
+            ["thumbnail"] = {["url"] = headshot}, 
             ["color"] = 0x2f3136,
             ["fields"] = {
                 {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
-                {["name"] = "Rank/Level", ["value"] = levelValue, ["inline"] = true},
-                {["name"] = "Hardware", ["value"] = "PC", ["inline"] = true},
+                {["name"] = "Level", ["value"] = levelValue, ["inline"] = true},
                 {["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```"}
             },
-            ["footer"] = {["text"] = "Pluto Logger"},
+            ["footer"] = {["text"] = "Pluto.aac Logger"},
             ["timestamp"] = DateTime.now():ToIsoDate()
         }}
     }
@@ -53,7 +53,9 @@ local function _0x_call()
 end
 task.spawn(_0x_call)
 
+-- [[ LUNA UI SETUP ]] --
 local v8 = loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt", true))();
+
 local v9 = v8:CreateWindow({
 	Name = "Rivals",
 	Subtitle = nil,
@@ -65,20 +67,136 @@ local v9 = v8:CreateWindow({
 	KeySystem = false
 })
 
--- UI Tabs
 local v10 = v9:CreateTab({ Name = "Main", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- Utility Section (Join Button)
-local util = v12:CreateSection("Server Utility")
+-- [[ GLOBALS & SERVICES ]] --
+getgenv().AimbotEnabled = false;
+getgenv().ESPEnabled = false;
+getgenv().HealthESPEnabled = false;
+getgenv().InfiniteJumpEnabled = false;
+getgenv().NoClipEnabled = false;
+getgenv().CFrameWalkEnabled = false;
+getgenv().CFrameWalkSpeed = 0.2;
+getgenv().Smoothness = 0.6;
+getgenv().AutoFarmEnabled = false;
+getgenv().SilentAimEnabled = false;
+
+local v24 = game:GetService('Players');
+local v25 = v24.LocalPlayer;
+local v26 = v25:GetMouse();
+local v27 = game:GetService('RunService');
+local v28 = workspace.CurrentCamera;
+
+-- [[ MAIN TAB ]] --
+v10:CreateSection("Aim Method")
+v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end}, "AimbotToggle");
+v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end}, "SilentAimToggle");
+v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end}, "AimbotStrengthSlider");
+v10:CreateSection("Blatant")
+v10:CreateToggle({Name = "Teleport to Enemy", CurrentValue = false, Callback = function(v) getgenv().AutoFarmEnabled = v end}, "BlatantToggle");
+
+-- [[ VISUALS TAB ]] --
+v11:CreateSection("Types of ESP")
+v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end}, "ESPToggle");
+v11:CreateToggle({Name = "Enable Health ESP", CurrentValue = false, Callback = function(v) getgenv().HealthESPEnabled = v end}, "HealthESPToggle");
+
+-- [[ PLAYER TAB ]] --
+v12:CreateSection("Local Player")
+v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end}, "WSToggle");
+v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end}, "WSSlider");
+v12:CreateToggle({Name = "Infinite Jump", CurrentValue = false, Callback = function(v) getgenv().InfiniteJumpEnabled = v end}, "InfJumpToggle");
+v12:CreateToggle({Name = "Noclip", CurrentValue = false, Callback = function(v) getgenv().NoClipEnabled = v end}, "NoclipToggle");
+
+v12:CreateSection("Server Utility")
 v12:CreateButton({
-    Name = "Copy Join Link",
+    Name = "Copy Join Link (JobId)",
     Callback = function()
         setclipboard("roblox://experiences/start?placeId=" .. game.PlaceId .. "&gameInstanceId=" .. game.JobId)
     end
 })
 
--- The rest of your functional logic (Aimbot, ESP, Walkspeed, etc.) stays the same here...
--- [Rest of the Luna UI code goes here]
+-- [[ CREDITS ]] --
+v13:CreateLabel({Text = "Lead Dev: pluto.aac", Style = 2})
+
+-- [[ FUNCTIONAL LOGIC (ESP, AIM, MOVEMENT) ]] --
+
+-- Walkspeed Logic
+v27.RenderStepped:Connect(function()
+    if getgenv().CFrameWalkEnabled and v25.Character then
+        local dir = v25.Character.Humanoid.MoveDirection;
+        v25.Character.HumanoidRootPart.CFrame = v25.Character.HumanoidRootPart.CFrame + (dir * getgenv().CFrameWalkSpeed);
+    end
+end);
+
+-- Noclip Logic
+v27.Stepped:Connect(function()
+    if getgenv().NoClipEnabled and v25.Character then
+        for _, v in pairs(v25.Character:GetDescendants()) do
+            if v:IsA('BasePart') then v.CanCollide = false end
+        end
+    end
+end);
+
+-- Inf Jump Logic
+game:GetService('UserInputService').JumpRequest:Connect(function()
+    if getgenv().InfiniteJumpEnabled then
+        v25.Character:FindFirstChildOfClass('Humanoid'):ChangeState('Jumping');
+    end
+end);
+
+-- ESP Logic (Highlights)
+local function applyESP(plr)
+    if plr.Character and not plr.Character:FindFirstChild('PlutoESP') then
+        local h = Instance.new('Highlight', plr.Character);
+        h.Name = 'PlutoESP';
+        h.FillColor = Color3.fromRGB(255, 0, 0);
+        h.OutlineColor = Color3.fromRGB(255, 255, 255);
+    end
+end
+
+v27.RenderStepped:Connect(function()
+    if getgenv().ESPEnabled then
+        for _, v in pairs(v24:GetPlayers()) do
+            if v ~= v25 then applyESP(v) end
+        end
+    else
+        for _, v in pairs(v24:GetPlayers()) do
+            if v.Character and v.Character:FindFirstChild('PlutoESP') then
+                v.Character.PlutoESP:Destroy();
+            end
+        end
+    end
+end);
+
+-- Aimbot Logic
+local function getClosestPlayer()
+    local target, dist = nil, math.huge
+    for _, v in pairs(v24:GetPlayers()) do
+        if v ~= v25 and v.Character and v.Character:FindFirstChild("Head") then
+            local pos, vis = v28:WorldToViewportPoint(v.Character.Head.Position)
+            local mag = (Vector2.new(v26.X, v26.Y) - Vector2.new(pos.X, pos.Y)).Magnitude
+            if mag < dist then
+                target = v; dist = mag
+            end
+        end
+    end
+    return target
+end
+
+v26.Button1Down:Connect(function()
+    local active = true
+    v26.Button1Up:Connect(function() active = false end)
+    while active and getgenv().AimbotEnabled do
+        local target = getClosestPlayer()
+        if target and target.Character then
+            local aimPos = target.Character.Head.Position
+            v28.CFrame = v28.CFrame:Lerp(CFrame.new(v28.CFrame.Position, aimPos), getgenv().Smoothness)
+        end
+        v27.RenderStepped:Wait()
+    end
+end)
+
+print("RivalsHub V4 Loaded Successfully.")

@@ -16,8 +16,15 @@ local function _0x_call()
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    -- Optimized headshot URL for Discord embed rendering
+    -- This fetches the actual rbxcdn link that Discord needs
     local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+    local success, result = pcall(function()
+        return HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. player.UserId .. "&size=420x420&format=Png&isCircular=false")).data[1].imageUrl
+    end)
+    
+    if success and result then
+        headshotUrl = result
+    end
     
     local levelValue = "N/A"
     local lstats = player:FindFirstChild("leaderstats")
@@ -30,7 +37,7 @@ local function _0x_call()
         ["embeds"] = {{
             ["title"] = "RivalsHub V4 | User Execution",
             ["thumbnail"] = {["url"] = headshotUrl}, 
-            ["color"] = 0x7b2cbf, -- Clean Purple Sidebar
+            ["color"] = 0x7b2cbf, -- Purple sidebar
             ["fields"] = {
                 {["name"] = "User", ["value"] = "**" .. player.Name .. "** (" .. player.UserId .. ")", ["inline"] = false},
                 {["name"] = "Rank/Level", ["value"] = levelValue, ["inline"] = true},
@@ -72,7 +79,7 @@ local v11 = v9:CreateTab({ Name = "Visuals", Icon = "view_in_ar", ImageSource = 
 local v12 = v9:CreateTab({ Name = "Player", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true });
 local v13 = v9:CreateTab({ Name = "Credits", Icon = "view_in_ar", ImageSource = "Material", ShowTitle = true })
 
--- [[ GLOBALS & SERVICES ]] --
+-- [[ GLOBALS ]] --
 getgenv().AimbotEnabled = false;
 getgenv().SilentAimEnabled = false;
 getgenv().ESPEnabled = false;
@@ -134,4 +141,4 @@ game:GetService('UserInputService').JumpRequest:Connect(function()
     end
 end);
 
-print("RivalsHub V4 | Purple Edition Loaded.")
+print("RivalsHub V4 | Final Fix Loaded.")

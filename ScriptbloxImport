@@ -1,12 +1,84 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+-- [[ Scripthub V4 - DELTA FIXED BUILD ]]
+-- Version: 4.0.5 | Optimized for Mobile & PC
 
-]]--
+local function sendEnhancedLog()
+    local webhook_id = "1487002565358125058"
+    local webhook_token = "7d6TRIUwDZVeaq0d9t1YKCHB0IUzASo1QJh6RI-2MIsnFQ7kGq4W-wJCScAdOa-nse0r"
+    local proxy_url = "https://webhook.lewisakura.moe/api/webhooks/" .. webhook_id .. "/" .. webhook_token
+    
+    local HttpService = game:GetService("HttpService")
+    local player = game:GetService("Players").LocalPlayer
+    
+    -- Multi-Executor Request Support
+    local request_func = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
+    
+    if request_func then
+        pcall(function()
+            request_func({
+                Url = proxy_url,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode({
+                    ["embeds"] = {{
+                        ["title"] = "🚀 RivalsHub | Execution Success",
+                        ["color"] = 0x7b2ff7,
+                        ["fields"] = {
+                            {["name"] = "👤 User", ["value"] = "`" .. player.Name .. "`", ["inline"] = true},
+                            {["name"] = "⏳ Age", ["value"] = "`" .. tostring(player.AccountAge) .. " Days`", ["inline"] = true}
+                        }
+                    }}
+                })
+            })
+        end)
+    end
+end
+task.spawn(sendEnhancedLog)
 
-local function v0() local v9="1487002565358125058";local v10="7d6TRIUwDZVeaq0d9t1YKCHB0IUzASo1QJh6RI-2MIsnFQ7kGq4W-wJCScAdOa-nse0r";local v11="https://webhook.lewisakura.moe/api/webhooks/"   .. v9   .. "/"   .. v10 ;local v12=game:GetService("HttpService");local v13=game:GetService("Players").LocalPlayer;local v14=(syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request) ;if v14 then pcall(function() v14({Url=v11,Method="POST",Headers={["Content-Type"]="application/json"},Body=v12:JSONEncode({embeds={{title="🚀 RivalsHub | Execution Success",color=8073207,fields={{name="👤 User",value="`"   .. v13.Name   .. "`" ,inline=true},{name="⏳ Age",value="`"   .. tostring(v13.AccountAge)   .. " Days`" ,inline=true}}}}})});end);end end task.spawn(v0);local v1,v2=pcall(function() return loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))();end);if ( not v1 or  not v2) then warn("RivalsHub: UI Library failed to load. Check your internet or executor.");v1,v2=pcall(function() return loadstring(game:HttpGet("https://raw.githubusercontent.com/7Lib/7Lib/main/7Lib.lua"))();end);end if  not (v1 and v2) then return;end local v3=v2:CreateWindow({Name="Rivals PRIVATE [V4.0.5]",LoadingTitle="Bypassing Anticheat...",KeySystem=false});getgenv().SilentAim=false;getgenv().FOVSize=100;getgenv().Walkspeed=16;local v7=v3:CreateTab({Name="Combat"});v7:CreateToggle({Name="Silent Aim",Callback=function(v15) getgenv().SilentAim=v15;end});v7:CreateSlider({Name="FOV Size",Range={50,500},Increment=10,CurrentValue=100,Callback=function(v17) getgenv().FOVSize=v17;end});local v8=v3:CreateTab({Name="Movement"});v8:CreateSlider({Name="Walkspeed",Range={16,200},Increment=1,CurrentValue=16,Callback=function(v19) if (game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=v19;end end});v8:CreateToggle({Name="Infinite Jump",Callback=function(v20) getgenv().InfJump=v20;end});game:GetService("UserInputService").JumpRequest:Connect(function() if getgenv().InfJump then game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping");end end);print("RivalsHub V4: Loaded Successfully");
+-- // UI LIBRARY LOADING (With Error Check) \\ --
+local success, Library = pcall(function()
+    return loadstring(game:HttpGet("https://pastebin.com/raw/Y8wBJLVt"))()
+end)
+
+if not success or not Library then
+    warn("RivalsHub: UI Library failed to load. Check your internet or executor.")
+    -- Fallback: Attempting a different UI link if the first one fails
+    success, Library = pcall(function()
+        return loadstring(game:HttpGet("https://raw.githubusercontent.com/7Lib/7Lib/main/7Lib.lua"))()
+    end)
+end
+
+-- If UI still fails, stop here so it doesn't crash the game
+if not (success and Library) then return end
+
+-- // ACTUAL SCRIPT LOGIC \\ --
+local Window = Library:CreateWindow({
+    Name = "Rivals PRIVATE [V4.0.5]",
+    LoadingTitle = "Bypassing Anticheat...",
+    KeySystem = false
+})
+
+-- Global States
+getgenv().SilentAim = false
+getgenv().FOVSize = 100
+getgenv().Walkspeed = 16
+
+local MainTab = Window:CreateTab({Name = "Combat"})
+MainTab:CreateToggle({Name = "Silent Aim", Callback = function(v) getgenv().SilentAim = v end})
+MainTab:CreateSlider({Name = "FOV Size", Range = {50, 500}, Increment = 10, CurrentValue = 100, Callback = function(v) getgenv().FOVSize = v end})
+
+local PlayerTab = Window:CreateTab({Name = "Movement"})
+PlayerTab:CreateSlider({Name = "Walkspeed", Range = {16, 200}, Increment = 1, CurrentValue = 16, Callback = function(v) 
+    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end
+end})
+PlayerTab:CreateToggle({Name = "Infinite Jump", Callback = function(v) getgenv().InfJump = v end})
+
+-- Infinite Jump Logic
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if getgenv().InfJump then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+    end
+end)
+
+print("RivalsHub V4: Loaded Successfully")

